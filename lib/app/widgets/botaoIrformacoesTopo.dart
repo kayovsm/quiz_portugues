@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../style/font_size.dart';
+import 'package:quiz_portugues/app/style/text_style/subtitle_text.dart';
 import '../style/my_colors.dart';
 import '../style/svg_asset.dart';
 
@@ -15,33 +15,22 @@ class TopInfoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-        color: MyColors.black,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgAsset(
-                  icon: icon,
-                  color: MyColors.white,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  buttonTxt,
-                  style: TextStyle(
-                    fontSize: FontSize.getFontSize(context),
-                    fontWeight: FontWeight.w600,
-                    color: MyColors.white,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+      decoration: BoxDecoration(
+        color: MyColors.white,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SvgAsset(
+            icon: icon,
+            color: MyColors.black,
+          ),
+          const SizedBox(width: 5),
+          SubTitleTxt(txt: buttonTxt)
+        ],
       ),
     );
   }

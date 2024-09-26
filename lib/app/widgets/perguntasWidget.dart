@@ -19,17 +19,14 @@ class QuestionWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Material(
-      elevation: 50.0,
+      elevation: 50.0, // Ajuste a elevação conforme necessário
       borderRadius: BorderRadius.circular(20),
+      shadowColor: Colors.black.withOpacity(1), // Ajuste a cor da sombra se necessário
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: MyColors.white,
-          // border: Border.all(
-          //   color: MyColors.black,
-          //   width: 0.1,
-          // ),
         ),
         width: size.width,
         height: height,

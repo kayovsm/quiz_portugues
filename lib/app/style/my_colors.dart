@@ -18,5 +18,14 @@ class MyColors {
   static const orange = Color(0xFFF89320);
   static const darkGreen = Color(0xFF014550);
   static const blackGreen = Color(0xFF102830);
+  static const yellow = Color(0xFFFCFF33);
+  static const pink = Color(0xFFE53935);
+  static const lightGreen = Color(0xFF4CAF50);
+  static const red = Color(0xFFE90707);
   static const transparent = Colors.transparent;
+
+  // Colors Ranking
+  static const gold = Color(0xFFD4AF37);
+  static const silver = Color(0xFFC0C0C0);
+  static const bronze = Color(0xFFCD7F32);
 }

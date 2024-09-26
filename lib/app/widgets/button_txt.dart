@@ -13,6 +13,7 @@ class ButtonTxt extends StatelessWidget {
   final String? iconBtn;
   final double? iconH;
   final Color? iconColor;
+  final double? borderRadius;
 
   const ButtonTxt({
     super.key,
@@ -23,6 +24,7 @@ class ButtonTxt extends StatelessWidget {
     this.iconH,
     this.txtColor = MyColors.white,
     this.btnColor = MyColors.blue,
+    this.borderRadius = 20,
     this.width,
   });
 
@@ -33,19 +35,19 @@ class ButtonTxt extends StatelessWidget {
       child: IntrinsicWidth(
         child: Container(
           padding: iconBtn != null
-              ? EdgeInsets.all(10)
-              : EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 8)
+              : const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
             color: iconBtn != null && txtBtn == null
                 ? MyColors.transparent
                 : btnColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius!),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (iconBtn != null) SvgAsset(icon: iconBtn!, color: iconColor),
-              if (iconBtn != null && txtBtn != null) const SizedBox(width: 8),
+              if (iconBtn != null && txtBtn != null) const SizedBox(width: 5),
               if (txtBtn != null)
                 Text(
                   txtBtn!,

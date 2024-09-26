@@ -22,7 +22,7 @@ class SubTitleTxt extends StatelessWidget {
     double fontSize;
     switch (deviceType) {
       case Device.mobile:
-        fontSize = 15;
+        fontSize = 17;
         break;
       case Device.tablet:
         fontSize = 18;

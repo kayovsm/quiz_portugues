@@ -6,14 +6,15 @@ import '../../widgets/botaoAlternativas.dart';
 import '../../widgets/botaoIrformacoesTopo.dart';
 import '../../widgets/cronometro.dart';
 import '../../widgets/perguntasWidget.dart';
-import 'questions_page_controller.dart';
+import 'questions_tournamnet_controller.dart';
 
-class QuestionsPage extends StatelessWidget {
-  const QuestionsPage({super.key});
+class QuestionsTournamentPage extends StatelessWidget {
+  const QuestionsTournamentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final QuestionsController controller = Get.put(QuestionsController());
+    final QuestionsTournamentController controller =
+        Get.put(QuestionsTournamentController());
 
     final screenH = MediaQuery.of(context).size.height;
     final screenW = MediaQuery.of(context).size.width;
@@ -39,13 +40,10 @@ class QuestionsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Obx(() => TopInfoButton(
-                          buttonTxt: '${controller.questionCounter}/10',
+                          buttonTxt: '${controller.questionCounter}/15',
                           icon: "list",
                         )),
-                    TimerWidget(
-                      animation: StepTween(begin: 31, end: 0)
-                          .animate(controller.controller),
-                    ),
+                    TimerTournamentWidget(),
                   ],
                 ),
               ),

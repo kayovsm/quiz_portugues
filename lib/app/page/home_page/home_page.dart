@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_portugues/app/widgets/button_txt.dart';
-import '../style/gradient_color.dart';
-import '../routes/routes_mobile.dart';
-import '../widgets/botaoIniciarReiniciar.dart';
-import '../widgets/logoQuiz.dart';
+import '../../style/gradient_color.dart';
+import '../../routes/routes_mobile.dart';
+import '../../widgets/botaoIniciarReiniciar.dart';
+import '../../widgets/logoQuiz.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -35,8 +35,17 @@ class HomePage extends StatelessWidget {
                 //       // Get.offNamed(RoutesMobile.questionsPage)
                 // ),
                 ButtonTxt(
+                  txtBtn: 'Ranking',
+                  onTap: () => Get.toNamed(RoutesMobile.rankingPage),
+                ),
+                ButtonTxt(
                   txtBtn: 'Iniciar',
                   onTap: () => Get.offNamed(RoutesMobile.questionsPage),
+                ),
+                ButtonTxt(
+                  txtBtn: 'Torneio',
+                  onTap: () =>
+                      Get.offNamed(RoutesMobile.questionTournamentPage),
                 ),
               ],
             ),

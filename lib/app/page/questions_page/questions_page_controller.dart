@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../models/dataBaseHelper.dart';
 import '../../models/questions.dart';
 import '../../models/quiz_dados.dart';
@@ -90,7 +89,7 @@ class QuestionsController extends GetxController
           ),
           child: ExplanationAlert(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-            title: "Time's up!",
+            title: "Tempo esgotado!",
             explanationText:
                 "\nYou got: ${correctAnswers.value} out of ${correctAnswers.value + errors.value}\n",
             image: 'relogio-quebrado',
