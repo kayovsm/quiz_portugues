@@ -54,7 +54,7 @@ class NotificationTop {
             height: 12,
             decoration: BoxDecoration(
               color: lineColor,
-              borderRadius:const BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
               ),
@@ -70,6 +70,16 @@ class NotificationTop {
       icon: 'info',
       title: 'Login Falhou',
       message: 'Usuário ou senha incorretos!',
+      bgColor: MyColors.pink,
+      txtColor: MyColors.black,
+    );
+  }
+
+  void createError() {
+    NotificationTop().showNotificationTop(
+      icon: 'info',
+      title: 'Flha ao criar usuário',
+      message: 'Nome de usuário já existe!',
       bgColor: MyColors.pink,
       txtColor: MyColors.black,
     );

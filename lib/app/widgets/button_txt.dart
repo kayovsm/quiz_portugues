@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../style/my_colors.dart';
 import '../style/svg_asset.dart';
@@ -30,18 +31,27 @@ class ButtonTxt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = this.width ?? Get.width;
+
     return GestureDetector(
       onTap: onTap,
       child: IntrinsicWidth(
         child: Container(
+          width: width,
           padding: iconBtn != null
-              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 8)
+              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 10)
               : const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
             color: iconBtn != null && txtBtn == null
                 ? MyColors.transparent
                 : btnColor,
             borderRadius: BorderRadius.circular(borderRadius!),
+            border: btnColor == MyColors.transparent
+                ? Border.all(
+                    color: MyColors.black,
+                    width: 1,
+                  )
+                : null,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -65,7 +65,7 @@ class AuthControllerMobile extends GetxController {
         Get.offAllNamed(RoutesMobile.homePage);
       }
     } catch (e) {
-      NotificationTop().loginError();
+      NotificationTop().createError();
     }
   }
 

@@ -11,7 +11,7 @@ class MyColors {
 
   static const cutGrey = Color(0xff3b4e55);
   static const lightGrey = Color(0xFF151B2B);
-  static const blue = Color(0xFF03A9F4);
+  static const blue = Color.fromARGB(255, 18, 56, 73);
   static const white = Color(0xFFfefefe);
   static const black = Color(0xFF2C2D33);
   static const neonGreen = Color(0xFF59B172);

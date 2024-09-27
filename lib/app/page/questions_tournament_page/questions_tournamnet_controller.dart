@@ -144,7 +144,7 @@ class QuestionsTournamentController extends GetxController {
 
     List<Map> currentUser = await UserDataDB().getUserDataDB();
     // String email = currentUser[0]['email'];
-    String name = currentUser[0]['name'];
+    String name = currentUser[0]['email'];
 
     await addTestUsers();
 

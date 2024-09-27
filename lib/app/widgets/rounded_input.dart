@@ -67,15 +67,15 @@ class _RoundedInputIconState extends State<RoundedInputIcon> {
             ),
             label: DescriptionTxt(txt: widget.hintTxt),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: MyColors.cutGrey, width: 1.5),
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: MyColors.cutGrey, width: 1),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: MyColors.blue, width: 2),
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color:MyColors.blue, width: 1.5),
             ),
           ),
         ),

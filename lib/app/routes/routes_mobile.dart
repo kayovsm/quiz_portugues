@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 import 'package:quiz_portugues/app/page/home_page/home_page.dart';
+import 'package:quiz_portugues/app/page/login_page/create_account_page.dart';
 import 'package:quiz_portugues/app/page/questions_page/questions_page.dart';
 import 'package:quiz_portugues/app/page/result_page/result_page.dart';
-
 import '../page/login_page/login_page.dart';
 import '../page/questions_tournament_page/questions_tournament_page.dart';
 import '../page/ranking_page/ranking_page.dart';
 
 class RoutesMobile {
   static const loginPage = '/loginPage';
+  static const createAccountPage = '/createAccountPage';
   static const homePage = '/homePage';
   static const questionsPage = '/questionsPage';
   static const questionTournamentPage = '/questionTournamentPage';
@@ -18,6 +19,12 @@ class RoutesMobile {
   static const Transition transitionType = Transition.native;
 
   static final List<GetPage> pages = [
+    /*
+    GetPage(
+      name: createAccountPage,
+      page: () => const CreateAccountPage(),
+      transition: transitionType,
+    ),*/
     GetPage(
       name: loginPage,
       page: () => const LoginPage(),
