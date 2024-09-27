@@ -31,78 +31,49 @@ class ExplanationAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        color: MyColors.white,
-      ),
-      // height: height,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // ImageAsset(
-          //   image: image,
-          //   imageH: 100,
-          // ),
-          Image.asset(
-            'assets/gifs/$image.gif',
-            height: 150,
+    return IntrinsicHeight(
+      child: IntrinsicWidth(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            color: MyColors.white,
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TitleTxt(txt: title),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                'assets/gifs/$image.gif',
+                height: 150,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TitleTxt(txt: title),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: MyColors.blue,
+                ),
+                child: SubTitleTxt(
+                  txt: explanationText,
+                  color: MyColors.white,
+                ),
+              ),
+              const SizedBox(height: 30),
+              ButtonTxt(
+                txtBtn: buttonText,
+                onTap: () {
+                  Navigator.of(context).pop();
+                  onTap();
+                },
+                btnColor: MyColors.black,
+              ),
+            ],
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: MyColors.blue,
-            ),
-            child: SubTitleTxt(
-              txt: explanationText,
-              color: MyColors.white,
-            ),
-          ),
-          const SizedBox(height: 30),
-          ButtonTxt(
-            txtBtn: buttonText,
-            onTap: () {
-              Navigator.of(context).pop();
-              onTap();
-            },
-            btnColor: MyColors.black,
-          ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     width: size.width - 20,
-          //     margin: const EdgeInsets.only(top: 30),
-          //     padding: const EdgeInsets.symmetric(vertical: 12),
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(30),
-          //       color: MyColors.neonGreen,
-          //     ),
-          //     child: InkWell(
-          //       onTap: () {
-          //         Navigator.of(context).pop();
-          //         onTap();
-          //       },
-          //       child: Text(
-          //         buttonText,
-          //         style: TextStyle(
-          //           fontSize: FontSize.getFontSize(context),
-          //           fontWeight: FontWeight.w700,
-          //           color: MyColors.white,
-          //         ),
-          //         textAlign: TextAlign.center,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-        ],
+        ),
       ),
     );
   }

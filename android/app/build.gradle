@@ -25,8 +25,10 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.quiz_portugues"
-    compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+//    compileSdk flutter.compileSdkVersion
+//    ndkVersion flutter.ndkVersion
+    compileSdkVersion = 34
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -46,7 +48,8 @@ android {
         applicationId "com.example.quiz_portugues"
         // minSdkVersion flutter.minSdkVersion
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
+//        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion = 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

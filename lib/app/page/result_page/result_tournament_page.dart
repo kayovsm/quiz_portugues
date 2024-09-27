@@ -7,8 +7,8 @@ import '../../routes/routes_mobile.dart';
 import '../../style/gradient_color.dart';
 import '../../widgets/aleert_explanation.dart';
 
-class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+class ResultTournamentPage extends StatelessWidget {
+  const ResultTournamentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class ResultPage extends StatelessWidget {
                 onTap: () {
                   // final QuestionsController controller = Get.put(QuestionsController());
                   // controller.resetQuiz();
-                  Get.offAllNamed(RoutesMobile.questionsPage);
+                  Get.offAllNamed(RoutesMobile.questionTournamentPage);
                   // Get.offAllNamed(RoutesMobile.homePage);
                 },
               ),
