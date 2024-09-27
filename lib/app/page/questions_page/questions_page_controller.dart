@@ -30,7 +30,7 @@ class QuestionsController extends GetxController
 
   void initializeController() {
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
+        AnimationController(vsync: this, duration: const Duration(seconds: 30));
     controller.addListener(() {
       if (controller.isCompleted) {
         onTimeUp();
@@ -138,12 +138,13 @@ class QuestionsController extends GetxController
   }
 
   void nextQuestion() {
-    if (correctAnswers.value + errors.value == 2) {
+    if (correctAnswers.value + errors.value == 10) {
       controller.stop();
       Get.offNamed(
         RoutesMobile.resultPage,
         arguments: correctAnswers.value,
       );
+      Get.delete<QuestionsController>();
     } else {
       questionCounter++;
       controller.reset(); // Reset the timer
@@ -183,6 +184,7 @@ class QuestionsController extends GetxController
               if (errors.value + correctAnswers.value == 10) {
                 Get.offNamed(RoutesMobile.resultPage,
                     arguments: correctAnswers.value);
+                    Get.delete<QuestionsController>();
               } else {
                 nextQuestion();
                 currentQuestionIndex++;

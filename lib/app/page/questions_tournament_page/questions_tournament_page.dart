@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_portugues/app/widgets/button_txt.dart';
+
 import '../../style/my_colors.dart';
 import '../../widgets/botaoAlternativas.dart';
 import '../../widgets/botaoIrformacoesTopo.dart';
@@ -86,6 +87,7 @@ class QuestionsTournamentPage extends StatelessWidget {
                                             iconBtn: 'next',
                                             txtBtn:
                                                 ' ${controller.skippedQuestions}/3',
+                                            fullWidth: false,
                                             txtColor: MyColors.black,
                                             iconColor: MyColors.black,
                                             onTap: controller.skippedQuestions

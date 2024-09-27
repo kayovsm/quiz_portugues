@@ -34,7 +34,8 @@ class TimerTournamentWidget extends StatelessWidget {
 
       return TopInfoButton(
         buttonTxt: timerText,
-        icon: "timer",
+        gif: 'hourglass',
+        // icon: "timer",
       );
     });
   }

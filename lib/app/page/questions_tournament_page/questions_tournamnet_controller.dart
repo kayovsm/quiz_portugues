@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quiz_portugues/app/models/database/user_data.dart';
+
 import '../../models/dataBaseHelper.dart';
 import '../../models/questions.dart';
 import '../../models/quiz_dados.dart';
@@ -24,7 +25,7 @@ class QuestionsTournamentController extends GetxController {
   var selectedAnswer = (-1).obs;
   var selectedQuestions = <Question>[].obs;
   late Stopwatch stopwatch;
-  var elapsedTime = Duration().obs;
+  var elapsedTime = const Duration().obs;
 
   @override
   void onInit() {
@@ -59,13 +60,17 @@ class QuestionsTournamentController extends GetxController {
     super.onClose();
   }
 
-  void skipQuestion() {
+  Future<void> skipQuestion() async {
     if (skippedQuestions.value < 3) {
       currentQuestionIndex++;
       skippedQuestions++;
     } else {
       if (errors.value + correctAnswers.value == 15) {
-        saveResultsFB();
+        await saveResultsFB();
+        Get.offNamed(
+          RoutesMobile.resultTournamentPage,
+          arguments: correctAnswers.value,
+        );
       } else {
         currentQuestionIndex++;
         questionCounter++;
@@ -74,9 +79,13 @@ class QuestionsTournamentController extends GetxController {
     }
   }
 
-  void nextQuestion() {
-    if (correctAnswers.value + errors.value == 3) {
-      saveResultsFB();
+  Future<void> nextQuestion() async {
+    if (correctAnswers.value + errors.value == 15) {
+      await saveResultsFB();
+      Get.offNamed(
+        RoutesMobile.resultTournamentPage,
+        arguments: correctAnswers.value,
+      );
     } else {
       questionCounter++;
     }
@@ -84,55 +93,101 @@ class QuestionsTournamentController extends GetxController {
 
   void showExplanation(int answerIndex) async {
     bool isCorrectAnswer =
-        selectedQuestions[currentQuestionIndex.value].correctAnswerIndex == answerIndex;
+        selectedQuestions[currentQuestionIndex.value].correctAnswerIndex ==
+            answerIndex;
 
     // pausar o cronômetro
     stopwatch.stop();
 
-    showDialog(
-      context: Get.context!,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+    Get.bottomSheet(
+      SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(Get.context!).viewInsets.bottom,
           ),
-          title: Text(isCorrectAnswer
-              ? "Parabéns, você acertou!"
-              : "Oops, você errou!"),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(
-                  'Resposta correta: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplicação: ${selectedQuestions[currentQuestionIndex.value].explanation}',
-                ),
-              ],
-            ),
+          child: ExplanationAlert(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+            title: isCorrectAnswer
+                ? "Parabéns, você acertou!"
+                : "Ops, você errou!",
+            explanationText:
+                'Resposta Correta: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplicação: ${selectedQuestions[currentQuestionIndex.value].explanation}',
+            answerNumber: answerIndex,
+            image: isCorrectAnswer ? 'target1' : 'target2',
+            buttonText: "Ok",
+            onTap: () {
+              if (selectedQuestions[currentQuestionIndex.value]
+                      .correctAnswerIndex ==
+                  answerIndex) {
+                correctAnswers++;
+              } else {
+                errors++;
+              }
+              if (errors.value + correctAnswers.value == 15) {
+                Get.offNamed(RoutesMobile.resultTournamentPage,
+                    arguments: correctAnswers.value);
+                Get.delete<QuestionsTournamentController>();
+              } else {
+                nextQuestion();
+                currentQuestionIndex++;
+                stopwatch.start(); // Reset the timer
+                // controller.forward(); // Start the timer
+              }
+            },
           ),
-          actions: <Widget>[
-            TextButton(
-              child: Text("Ok"),
-              onPressed: () {
-                if (selectedQuestions[currentQuestionIndex.value].correctAnswerIndex == answerIndex) {
-                  correctAnswers++;
-                } else {
-                  errors++;
-                }
-                if (errors.value + correctAnswers.value == 15) {
-                  saveResultsFB();
-                } else {
-                  nextQuestion();
-                  currentQuestionIndex++;
-                }
-
-                stopwatch.start();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+        ),
+      ),
+      isScrollControlled: true,
+      isDismissible: false,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
     );
+
+    // showDialog(
+    //   context: Get.context!,
+    //   barrierDismissible: false,
+    //   builder: (BuildContext context) {
+    //     return AlertDialog(
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(30),
+    //       ),
+    //       title: Text(isCorrectAnswer
+    //           ? "Parabéns, você acertou!"
+    //           : "Oops, você errou!"),
+    //       content: SingleChildScrollView(
+    //         child: ListBody(
+    //           children: <Widget>[
+    //             Text(
+    //               'Resposta correta: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplicação: ${selectedQuestions[currentQuestionIndex.value].explanation}',
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       actions: <Widget>[
+    //         TextButton(
+    //           child: Text("Ok"),
+    //           onPressed: () {
+    //             if (selectedQuestions[currentQuestionIndex.value].correctAnswerIndex == answerIndex) {
+    //               correctAnswers++;
+    //             } else {
+    //               errors++;
+    //             }
+    //             if (errors.value + correctAnswers.value == 15) {
+    //               saveResultsFB();
+    //             } else {
+    //               nextQuestion();
+    //               currentQuestionIndex++;
+    //             }
+
+    //             stopwatch.start();
+    //             Navigator.of(context).pop();
+    //           },
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }
 
   Future<void> saveResultsFB() async {
@@ -146,7 +201,7 @@ class QuestionsTournamentController extends GetxController {
     // String email = currentUser[0]['email'];
     String name = currentUser[0]['email'];
 
-    await addTestUsers();
+    // await addTestUsers();
 
     User user = FirebaseAuth.instance.currentUser!;
     DocumentReference userDoc = firestore.collection('ranking').doc(user.uid);

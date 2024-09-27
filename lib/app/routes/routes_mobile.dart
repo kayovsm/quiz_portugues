@@ -6,6 +6,7 @@ import 'package:quiz_portugues/app/page/result_page/result_page.dart';
 import '../page/login_page/login_page.dart';
 import '../page/questions_tournament_page/questions_tournament_page.dart';
 import '../page/ranking_page/ranking_page.dart';
+import '../page/result_page/result_tournament_page.dart';
 
 class RoutesMobile {
   static const loginPage = '/loginPage';
@@ -14,6 +15,7 @@ class RoutesMobile {
   static const questionsPage = '/questionsPage';
   static const questionTournamentPage = '/questionTournamentPage';
   static const resultPage = '/resultPage';
+  static const resultTournamentPage = '/resultTournamentPage';
   static const rankingPage = '/rankingPage';
 
   static const Transition transitionType = Transition.native;
@@ -48,6 +50,11 @@ class RoutesMobile {
     GetPage(
       name: resultPage,
       page: () => const ResultPage(),
+      transition: transitionType,
+    ),
+    GetPage(
+      name: resultTournamentPage,
+      page: () => const ResultTournamentPage(),
       transition: transitionType,
     ),
     GetPage(
