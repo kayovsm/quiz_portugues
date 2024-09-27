@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../routes/routes_mobile.dart';
-import '../../style/my_colors.dart';
-import '../../style/gradient_color.dart';
-import '../../widgets/alertaExplicacao.dart';
+import 'package:quiz_portugues/app/style/text_style/title_text.dart';
 
-// class AcertosTotais {
-//   int acertos = 0;
-//   AcertosTotais(this.acertos);
-// }
+import '../../routes/routes_mobile.dart';
+import '../../style/gradient_color.dart';
+import '../../widgets/aleert_explanation.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
-  // static const routeName = '/telaResultados';
+  const ResultPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,41 +16,37 @@ class ResultPage extends StatelessWidget {
     GradientColor myConstants = GradientColor();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: SafeArea(
-          child: Container(
-            height: size.height,
-            width: size.width,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(gradient: myConstants.gradienBackground),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 180, bottom: 180),
-              child: Container(
-                width: size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: MyColors.blackGreen,
-                  border: Border.all(
-                    color: MyColors.neonGreen,
-                  ),
-                ),
-                child: ExplanationAlert(
-                  borderRadius: BorderRadius.circular(30),
-                  title: args <= 3
-                      ? "Que pena!"
-                      : args > 3 && args < 7
-                          ? "Muito bom!"
-                          : "Parabéns!",
-                  explanationText:
-                      "Você acertou: ${args} de 10 perguntas",
-                  image: args <= 3
-                      ? 'trofeu-bronze'
-                      : args > 3 && args < 7
-                          ? 'trofeu-prata'
-                          : 'trofeu-ouro',
-                  buttonText: "Reiniciar",
-                  onTap: () => Get.offNamed(RoutesMobile.questionsPage),
-                ),
+      appBar: AppBar(
+        title: const TitleTxt(txt: 'Resultado'),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.offNamed(RoutesMobile.homePage);
+          },
+        ),
+      ),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(gradient: myConstants.gradienBackground),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: ExplanationAlert(
+                borderRadius: BorderRadius.circular(30),
+                title: 'Parabéns!',
+                explanationText: "Você acertou: $args de 10 perguntas",
+                image: 'podium',
+                buttonText: "Reiniciar",
+                onTap: () {
+                  // final QuestionsController controller = Get.put(QuestionsController());
+                  // controller.resetQuiz();
+                  Get.offAllNamed(RoutesMobile.questionsPage);
+                  // Get.offAllNamed(RoutesMobile.homePage);
+                },
               ),
             ),
           ),

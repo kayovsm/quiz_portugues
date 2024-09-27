@@ -88,6 +88,7 @@ class QuestionsPage extends StatelessWidget {
                                             iconBtn: 'next',
                                             txtBtn:
                                                 ' ${controller.skippedQuestions}/3',
+                                            fullWidth: false,
                                             txtColor: MyColors.black,
                                             iconColor: MyColors.black,
                                             onTap: controller.skippedQuestions

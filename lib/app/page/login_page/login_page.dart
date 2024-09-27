@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                 icon: Icons.lock_clock_outlined,
                 onChanged: (value) {},
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               ButtonTxt(
                 txtBtn: 'Entrar',
                 btnColor: MyColors.black,

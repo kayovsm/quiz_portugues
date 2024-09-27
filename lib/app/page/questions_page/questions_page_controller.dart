@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../models/dataBaseHelper.dart';
 import '../../models/questions.dart';
 import '../../models/quiz_dados.dart';
 import '../../routes/routes_mobile.dart';
-import '../../widgets/alertaExplicacao.dart';
+import '../../widgets/aleert_explanation.dart';
 
 class QuestionsController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -23,17 +24,24 @@ class QuestionsController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    initializeController();
+    loadQuestions();
+  }
+
+  void initializeController() {
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 30));
+        AnimationController(vsync: this, duration: const Duration(seconds: 10));
     controller.addListener(() {
       if (controller.isCompleted) {
         onTimeUp();
       }
     });
     controller.forward(); // Start the timer
+  }
+
+  void loadQuestions() {
     dbHelper.initializeDatabase().then((_) {
-      questionsFuture =
-          dbHelper.getQuestions(); // Load questions from the database
+      questionsFuture = dbHelper.getQuestions();
     });
 
     // Select questions for the round
@@ -60,22 +68,42 @@ class QuestionsController extends GetxController
     super.onClose();
   }
 
+  void resetQuiz() {
+    // controller.dispose();
+    currentQuestionIndex.value = 0;
+    questionCounter.value = 1;
+    errors.value = 0;
+    correctAnswers.value = 0;
+    skippedQuestions.value = 0;
+    selectedAnswer.value = -1;
+    // loadQuestions();
+    // controller.reset();
+    // controller.forward();
+    initializeController();
+    // loadQuestions();
+    // controller.reset();
+    // controller.forward();
+  }
+
   void skipQuestion() {
     if (skippedQuestions.value < 3) {
       currentQuestionIndex++;
       skippedQuestions++;
-      controller.reset(); // Reset the timer
+      controller.reset();
+      controller.forward();
     } else {
       if (errors.value + correctAnswers.value == 10) {
-        Get.offNamed(RoutesMobile.resultPage,
-            arguments:
-                correctAnswers.value); // Pass parameter to the result page
+        Get.offNamed(
+          RoutesMobile.resultPage,
+          arguments: correctAnswers.value,
+        );
+        Get.delete<QuestionsController>();
       } else {
         currentQuestionIndex++;
         questionCounter++;
         skippedQuestions.value = 0;
-        controller.reset(); // Reset the timer
-        controller.forward(); // Start the timer
+        controller.reset();
+        controller.forward();
       }
     }
   }
@@ -91,10 +119,13 @@ class QuestionsController extends GetxController
             borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
             title: "Tempo esgotado!",
             explanationText:
-                "\nYou got: ${correctAnswers.value} out of ${correctAnswers.value + errors.value}\n",
-            image: 'relogio-quebrado',
-            buttonText: "Restart",
-            onTap: () => Get.offNamed(RoutesMobile.questionsPage),
+                "\nVocê acertou: ${correctAnswers.value} de ${correctAnswers.value + errors.value}\n",
+            image: 'coming_soon',
+            buttonText: "Reiniciar",
+            onTap: () {
+              resetQuiz();
+              Get.back(); // Close the bottom sheet
+            },
           ),
         ),
       ),
@@ -107,9 +138,12 @@ class QuestionsController extends GetxController
   }
 
   void nextQuestion() {
-    if (correctAnswers.value + errors.value == 10) {
-      Get.offNamed(RoutesMobile.resultPage,
-          arguments: correctAnswers.value); // Pass parameter to the result page
+    if (correctAnswers.value + errors.value == 2) {
+      controller.stop();
+      Get.offNamed(
+        RoutesMobile.resultPage,
+        arguments: correctAnswers.value,
+      );
     } else {
       questionCounter++;
       controller.reset(); // Reset the timer
@@ -131,12 +165,12 @@ class QuestionsController extends GetxController
           child: ExplanationAlert(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
             title: isCorrectAnswer
-                ? "Congratulations, you got it right!"
-                : "Oops, you got it wrong!",
+                ? "Parabéns, você acertou!"
+                : "Ops, você errou!",
             explanationText:
-                'Correct Answer: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplanation: ${selectedQuestions[currentQuestionIndex.value].explanation}',
+                'Resposta Correta: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplicação: ${selectedQuestions[currentQuestionIndex.value].explanation}',
             answerNumber: answerIndex,
-            image: isCorrectAnswer ? 'positivo' : 'negativo',
+            image: isCorrectAnswer ? 'target1' : 'target2',
             buttonText: "Ok",
             onTap: () {
               if (selectedQuestions[currentQuestionIndex.value]

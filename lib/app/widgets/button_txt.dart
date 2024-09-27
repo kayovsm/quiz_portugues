@@ -6,7 +6,6 @@ import '../style/svg_asset.dart';
 import '../utils/device_type.dart';
 
 class ButtonTxt extends StatelessWidget {
-  final double? width;
   final String? txtBtn;
   final Color? btnColor;
   final Color? txtColor;
@@ -15,6 +14,7 @@ class ButtonTxt extends StatelessWidget {
   final double? iconH;
   final Color? iconColor;
   final double? borderRadius;
+  final bool fullWidth;
 
   const ButtonTxt({
     super.key,
@@ -26,21 +26,21 @@ class ButtonTxt extends StatelessWidget {
     this.txtColor = MyColors.white,
     this.btnColor = MyColors.blue,
     this.borderRadius = 20,
-    this.width,
+    this.fullWidth = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    final width = this.width ?? Get.width;
+    final buttonWidth = fullWidth ? Get.width : null;
 
     return GestureDetector(
       onTap: onTap,
       child: IntrinsicWidth(
         child: Container(
-          width: width,
+          width: buttonWidth,
           padding: iconBtn != null
-              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 10)
-              : const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              ? const EdgeInsets.symmetric(horizontal: 20, vertical: 14)
+              : const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
           decoration: BoxDecoration(
             color: iconBtn != null && txtBtn == null
                 ? MyColors.transparent

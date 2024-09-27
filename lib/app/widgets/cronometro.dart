@@ -16,7 +16,8 @@ class TimerWidget extends AnimatedWidget {
 
     return TopInfoButton(
       buttonTxt: timerText,
-      icon: "timer",
+      gif: 'hourglass',
+      // icon: "timer",
     );
   }
 }

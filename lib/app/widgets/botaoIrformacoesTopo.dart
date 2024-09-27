@@ -4,13 +4,15 @@ import '../style/my_colors.dart';
 import '../style/svg_asset.dart';
 
 class TopInfoButton extends StatelessWidget {
-  final String icon;
+  final String? icon;
   final String buttonTxt;
+  final String? gif;
 
   const TopInfoButton({
     super.key,
     required this.buttonTxt,
-    required this.icon,
+    this.icon,
+    this.gif,
   });
 
   @override
@@ -24,10 +26,16 @@ class TopInfoButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgAsset(
-            icon: icon,
-            color: MyColors.black,
-          ),
+          if (gif != null)
+            Image.asset(
+              'assets/gifs/$gif.gif',
+              height: 24,
+            ),
+          if (icon != null)
+            SvgAsset(
+              icon: icon!,
+              color: MyColors.black,
+            ),
           const SizedBox(width: 5),
           SubTitleTxt(txt: buttonTxt)
         ],

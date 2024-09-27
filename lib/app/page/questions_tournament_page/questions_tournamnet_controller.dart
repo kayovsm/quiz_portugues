@@ -9,7 +9,7 @@ import '../../models/dataBaseHelper.dart';
 import '../../models/questions.dart';
 import '../../models/quiz_dados.dart';
 import '../../routes/routes_mobile.dart';
-import '../../widgets/alertaExplicacao.dart';
+import '../../widgets/aleert_explanation.dart';
 
 class QuestionsTournamentController extends GetxController {
   final DatabaseHelper dbHelper = DatabaseHelper();

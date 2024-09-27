@@ -13,7 +13,7 @@ class MyColors {
   static const lightGrey = Color(0xFF151B2B);
   static const blue = Color.fromARGB(255, 18, 56, 73);
   static const white = Color(0xFFfefefe);
-  static const black = Color(0xFF2C2D33);
+  static const black = Color(0xFF0B0B0C);
   static const neonGreen = Color(0xFF59B172);
   static const orange = Color(0xFFF89320);
   static const darkGreen = Color(0xFF014550);
