@@ -16,7 +16,7 @@ Future<void> main() async {
     await dotenv.load(fileName: ".env");
     print('LOG * Carregando variáveis de ambiente 2');
   } catch (e) {
-    print('LOG * Erro ao carregar variáveis de ambiente: $e');
+    print('LOG * Erro ao carregar variáveis de ambiente 3: $e');
   }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
