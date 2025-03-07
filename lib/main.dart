@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import 'app/routes/routes_mobile.dart';
@@ -9,15 +8,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // CARREGA AS VARIÁVEIS DE AMBIENTE
-  print('LOG * Carregando variáveis de ambiente 1');
-  try {
-    await dotenv.load(fileName: ".env");
-    print('LOG * Carregando variáveis de ambiente 2');
-  } catch (e) {
-    print('LOG * Erro ao carregar variáveis de ambiente 3: $e');
-  }
+  // INICIALIZA O FIREBASE
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
