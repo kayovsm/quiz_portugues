@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'app/routes/routes_mobile.dart';
+import 'app/routes/routes.dart';
+import 'app/ui/widgets/common/device/device_type_app.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -24,8 +25,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesMobile.loginPage,
-      getPages: RoutesMobile.pages,
+      builder: (context, child) {
+        DeviceTypeApp.init(context);
+        return child!;
+      },
+      initialRoute: Routes.loginView,
+      getPages: Routes.pages,
     );
   }
 }
