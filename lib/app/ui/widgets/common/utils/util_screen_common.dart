@@ -2,14 +2,16 @@ import 'package:flutter/widgets.dart';
 
 enum Device { mobile, tablet, desktop }
 
-class DeviceTypeApp {
+class UtilScreenCommon {
   static late double screenWidth;
   static late double screenHeight;
+  static late BuildContext contextUtil;
 
   static void init(BuildContext context) {
     final size = MediaQuery.of(context).size;
     screenWidth = size.width;
     screenHeight = size.height;
+    contextUtil = context;
   }
 
   static Device getDeviceType() {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_portugues/app/ui/widgets/common/alert/alert_center_common.dart';
-import 'package:quiz_portugues/app/ui/widgets/common/device/device_type_app.dart';
+import 'package:quiz_portugues/app/ui/widgets/common/utils/util_screen_common.dart';
 import '../../routes/routes.dart';
 import '../widgets/common/assets/app/app_icon_common.dart';
 import '../widgets/common/assets/asset_icon_common.dart';
 import '../widgets/common/button/button_common.dart';
-import '../widgets/common/color/color_app.dart';
-import '../widgets/common/text/subtitle_text_app.dart';
+import '../widgets/common/color/color_common.dart';
+import '../widgets/common/text/text_common.dart';
 import '../widgets/question_widget.dart';
 
 class QuestionsView extends StatelessWidget {
@@ -22,15 +22,15 @@ class QuestionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenH = DeviceTypeApp.screenHeight;
-    final screenW = DeviceTypeApp.screenWidth;
+    final screenH = UtilScreenCommon.screenHeight;
+    final screenW = UtilScreenCommon.screenWidth;
 
     return Scaffold(
       body: SafeArea(
         child: Container(
           width: screenW,
           height: screenH,
-          color: ColorApp.white,
+          color: ColorCommon.white,
           child: Column(
             children: <Widget>[
               _buildTopInfoSection(screenW, context),
@@ -40,7 +40,7 @@ class QuestionsView extends StatelessWidget {
                     return Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: ColorApp.white,
+                        color: ColorCommon.white,
                       ),
                       height: constraints.maxHeight * .9,
                       width: constraints.maxWidth,
@@ -68,7 +68,7 @@ class QuestionsView extends StatelessWidget {
         width: screenW,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: ColorApp.black,
+          color: ColorCommon.black,
         ),
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
@@ -76,7 +76,7 @@ class QuestionsView extends StatelessWidget {
           children: [
             ButtonCommon().icon(
               icon: AppIconCommon.arrowBack,
-              color: ColorApp.white,
+              color: ColorCommon.white,
               onTap: () async {
                 controller.animationController.stop();
                 var result = await AlertCenterCommon().confirm(
@@ -85,8 +85,8 @@ class QuestionsView extends StatelessWidget {
                   description: 'Deseja realmente sair do desafio?',
                   leftButtonLabel: 'Não',
                   rightButtonLabel: 'Sim',
-                  leftButtonColor: ColorApp.blue,
-                  rightButtonColor: ColorApp.red,
+                  leftButtonColor: ColorCommon.blue,
+                  rightButtonColor: ColorCommon.red,
                 );
 
                 if (result != null && result[0] == 2) {
@@ -101,7 +101,7 @@ class QuestionsView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                 decoration: BoxDecoration(
-                  color: ColorApp.white,
+                  color: ColorCommon.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Row(
@@ -109,10 +109,10 @@ class QuestionsView extends StatelessWidget {
                   children: [
                     const AssetIconCommon(
                       icon: AppIconCommon.list,
-                      color: ColorApp.black,
+                      color: ColorCommon.black,
                     ),
                     const SizedBox(width: 5),
-                    SubTitleTextApp(
+                    TextCommon.subtitle(
                         text:
                             '${controller.questionCounter.value}/$questionCounter'),
                   ],
@@ -156,7 +156,7 @@ class QuestionsView extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: ColorApp.white,
+            color: ColorCommon.white,
           ),
           height: screenH,
           padding: const EdgeInsets.all(16),
@@ -174,8 +174,8 @@ class QuestionsView extends StatelessWidget {
                           ? null
                           : controller.skipQuestion,
                       buttonColor: controller.skippedQuestions.value == 3
-                          ? ColorApp.grey
-                          : ColorApp.orange,
+                          ? ColorCommon.grey
+                          : ColorCommon.orange,
                     );
                   }),
                 ],

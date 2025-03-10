@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../assets/app/app_icon_common.dart';
 import '../assets/asset_icon_common.dart';
-import '../color/color_app.dart';
-import '../text/description_text_app.dart';
-import '../text/subtitle_text_app.dart';
+import '../color/color_common.dart';
+import '../text/text_common.dart';
 
 class AlertTopCommon {
   void showNotificationTop({
@@ -54,15 +53,15 @@ class AlertTopCommon {
                             children: [
                               AssetIconCommon(
                                 icon: icon!,
-                                color: ColorApp.white,
+                                color: ColorCommon.white,
                               ),
-                              SubTitleTextApp(
+                              TextCommon.subtitle(
                                 color: textColor,
                                 text: title,
                               ),
                             ],
                           ),
-                          DescriptionTextApp(
+                          TextCommon.description(
                             text: description,
                             color: textColor,
                           ),
@@ -108,9 +107,9 @@ class AlertTopCommon {
       title: title,
       description: message,
       backgroundColor: isDarkTheme
-          ? ColorApp.alertSuccessLightMode
-          : ColorApp.alertSuccessLightMode,
-      textColor: isDarkTheme ? ColorApp.white : ColorApp.white,
+          ? ColorCommon.alertSuccessLightMode
+          : ColorCommon.alertSuccessLightMode,
+      textColor: isDarkTheme ? ColorCommon.white : ColorCommon.white,
     );
   }
 
@@ -126,9 +125,9 @@ class AlertTopCommon {
       title: title,
       description: message,
       backgroundColor: isDarkTheme
-          ? ColorApp.alertErrorDarkMode
-          : ColorApp.alertErrorLightMode,
-      textColor: isDarkTheme ? ColorApp.white : ColorApp.white,
+          ? ColorCommon.alertErrorDarkMode
+          : ColorCommon.alertErrorLightMode,
+      textColor: isDarkTheme ? ColorCommon.white : ColorCommon.white,
     );
   }
 }

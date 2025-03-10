@@ -6,8 +6,8 @@ import '../../routes/routes.dart';
 import '../widgets/alert_explanation_widget.dart';
 import '../widgets/common/assets/app/app_icon_common.dart';
 import '../widgets/common/button/button_common.dart';
-import '../widgets/common/color/color_app.dart';
-import '../widgets/common/text/title_text_app.dart';
+import '../widgets/common/color/color_common.dart';
+import '../widgets/common/text/text_common.dart';
 import '../widgets/timer_widget.dart';
 
 class ResultRoundView extends StatelessWidget {
@@ -21,11 +21,11 @@ class ResultRoundView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.blue,
+      backgroundColor: ColorCommon.blue,
       appBar: AppBar(
-        title: const TitleTextApp(
+        title: TextCommon.title(
           text: 'Resultado',
-          color: ColorApp.white,
+          color: ColorCommon.white,
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -33,7 +33,7 @@ class ResultRoundView extends StatelessWidget {
         elevation: 0,
         leading: ButtonCommon().icon(
           icon: AppIconCommon.arrowBack,
-          color: ColorApp.white,
+          color: ColorCommon.white,
           onTap: () => Get.offNamed(Routes.homeView),
         ),
       ),
@@ -57,7 +57,7 @@ class ResultRoundView extends StatelessWidget {
                       Routes.questionsView,
                       arguments: {
                         'questionCounter': '15',
-                        'timerWidget': TimerTournamentWidget(),
+                        'timerWidget': const TimerTournamentWidget(),
                         'controller': controller,
                       },
                     );

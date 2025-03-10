@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Format {
+class UtilFormatterCommon {
   DateTime? formatDate(String? date) {
     if (date != null && date != '') {
       return DateFormat('dd/MM/yyyy').parse(date);
@@ -56,7 +56,7 @@ class Format {
     var time = bopmId.substring(cityCodeLength + 11, cityCodeLength + 17);
     var year = date.substring(4, 8);
 
-    DateTime dateTime = Format().dateTime(date, time)!;
+    DateTime dateTime = UtilFormatterCommon().dateTime(date, time)!;
 
     return {
       'dateHour': Timestamp.fromDate(dateTime),

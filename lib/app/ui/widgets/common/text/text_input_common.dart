@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../assets/app/app_icon_common.dart';
-import '../color/color_app.dart';
-import '../device/device_type_app.dart';
-import 'description_text_app.dart';
+import '../color/color_common.dart';
+import '../utils/util_screen_common.dart';
+import 'text_common.dart';
 
-class InputTextApp extends StatelessWidget {
+class TextInputCommon extends StatelessWidget {
   final String label;
   final double? width;
   final TextEditingController controller;
@@ -21,7 +21,7 @@ class InputTextApp extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final bool isPassword;
 
-  const InputTextApp({
+  const TextInputCommon({
     super.key,
     this.width,
     required this.label,
@@ -39,8 +39,8 @@ class InputTextApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = DeviceTypeApp.screenWidth;
-    Device deviceType = DeviceTypeApp.getDeviceType();
+    double screenWidth = UtilScreenCommon.screenWidth;
+    Device deviceType = UtilScreenCommon.getDeviceType();
     double maxW;
 
     switch (deviceType) {
@@ -88,7 +88,11 @@ class InputTextApp extends StatelessWidget {
                           child: SvgPicture.asset(
                             AppIconCommon.warningAmber,
                             height: 22,
-                            color: ColorApp.red,
+                            // color: ColorCommon.red,
+                            colorFilter: const ColorFilter.mode(
+                              ColorCommon.red,
+                              BlendMode.srcIn,
+                            ),
                           ),
                         )
                       : iconLeft != null
@@ -97,13 +101,17 @@ class InputTextApp extends StatelessWidget {
                               child: SvgPicture.asset(
                                 iconLeft!,
                                 height: 22,
-                                color: ColorApp.grey,
+                                // color: ColorCommon.grey,
+                                colorFilter: const ColorFilter.mode(
+                                  ColorCommon.grey,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             )
                           : null,
                   suffixIcon: iconRight,
-                  fillColor: ColorApp.transparent,
-                  label: DescriptionTextApp(
+                  fillColor: ColorCommon.transparent,
+                  label: TextCommon.description(
                     text: label,
                     color: Theme.of(context).textTheme.bodyMedium!.color!,
                   ),
@@ -143,7 +151,6 @@ class NoLeadingSpacesFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    print('LOG *** newValue: ${newValue.text}');
     String newText = newValue.text.trimLeft();
     int offset =
         newValue.selection.baseOffset - (newValue.text.length - newText.length);

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_portugues/app/ui/widgets/common/assets/app/app_icon_common.dart';
-
 import '../../controllers/ranking_controller.dart';
+import '../widgets/common/assets/app/app_icon_common.dart';
 import '../widgets/common/assets/asset_icon_common.dart';
-import '../widgets/common/color/color_app.dart';
-import '../widgets/common/text/description_text_app.dart';
-import '../widgets/common/text/subtitle_text_app.dart';
-import '../widgets/common/text/title_text_app.dart';
+import '../widgets/common/color/color_common.dart';
+import '../widgets/common/text/text_common.dart';
 
 class RankingView extends StatefulWidget {
   const RankingView({super.key});
 
   @override
-  _RankingViewState createState() => _RankingViewState();
+  State<RankingView> createState() => _RankingViewState();
 }
 
 class _RankingViewState extends State<RankingView> {
@@ -42,7 +39,7 @@ class _RankingViewState extends State<RankingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TitleTextApp(text: 'Classificação'),
+        title: TextCommon.title(text: 'Classificação'),
       ),
       body: isConnected
           ? StreamBuilder<List<Map<String, dynamic>>>(
@@ -66,24 +63,23 @@ class _RankingViewState extends State<RankingView> {
                     Color leadingIconColor;
                     if (index == 0) {
                       leadingIcon = AppIconCommon.medalRanking;
-                      leadingIconColor = ColorApp.yellow;
+                      leadingIconColor = ColorCommon.yellow;
                     } else if (index == 1) {
                       leadingIcon = AppIconCommon.medalRanking;
-                      leadingIconColor = ColorApp.grey;
+                      leadingIconColor = ColorCommon.grey;
                     } else if (index == 2) {
                       leadingIcon = AppIconCommon.medalRanking;
-                      leadingIconColor = ColorApp.brown;
+                      leadingIconColor = ColorCommon.brown;
                     } else {
                       leadingIcon = AppIconCommon.starRanking;
-                      leadingIconColor = ColorApp.green;
+                      leadingIconColor = ColorCommon.green;
                     }
 
                     return ListTile(
                       leading: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border:
-                              Border.all(color: leadingIconColor, width: 2),
+                          border: Border.all(color: leadingIconColor, width: 2),
                         ),
                         child: CircleAvatar(
                           backgroundColor: leadingIconColor.withOpacity(0.1),
@@ -93,8 +89,8 @@ class _RankingViewState extends State<RankingView> {
                           ),
                         ),
                       ),
-                      title: SubTitleTextApp(text: userName),
-                      subtitle: DescriptionTextApp(
+                      title: TextCommon.subtitle(text: userName),
+                      subtitle: TextCommon.description(
                         text: 'Acertos: $correctAnswers, Tempo: $time',
                       ),
                     );
@@ -102,11 +98,11 @@ class _RankingViewState extends State<RankingView> {
                 );
               },
             )
-          : const Center(
-              child: TitleTextApp(
+          : Center(
+              child: TextCommon.title(
                 text:
                     'Sem conexão com a internet. Por favor, verifique sua conexão.',
-                color: ColorApp.red,
+                color: ColorCommon.red,
               ),
             ),
     );

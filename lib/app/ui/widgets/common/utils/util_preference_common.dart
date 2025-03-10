@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 enum FontSizeOption { small, medium, large }
 
-class UserPreference extends ChangeNotifier {
+class UtilPreferenceCommon extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
   FontSizeOption _fontSizeOption = FontSizeOption.medium;
 
   ThemeMode get themeMode => _themeMode;
   FontSizeOption get fontSizeOption => _fontSizeOption;
 
-  UserPreference() {
+  UtilPreferenceCommon() {
     _loadUserPreferences();
   }
 

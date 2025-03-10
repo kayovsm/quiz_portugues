@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_portugues/app/ui/widgets/common/device/device_type_app.dart';
-import 'common/color/color_app.dart';
-import 'common/text/title_text_app.dart';
+import 'package:quiz_portugues/app/ui/widgets/common/utils/util_screen_common.dart';
+import 'common/color/color_common.dart';
+import 'common/text/text_common.dart';
 
 class QuestionWidget extends StatelessWidget {
   final String text;
@@ -23,7 +23,7 @@ class QuestionWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: ColorApp.white,
+          color: ColorCommon.white,
           border: const Border(
             top: BorderSide(
               color: Colors.black,
@@ -32,16 +32,16 @@ class QuestionWidget extends StatelessWidget {
           ),
           boxShadow: const [
             BoxShadow(
-              color: ColorApp.greyLightMode,
+              color: ColorCommon.greyLightMode,
               blurRadius: 5,
               offset: Offset(0, 6),
             ),
           ],
         ),
-        width: DeviceTypeApp.screenWidth,
+        width: UtilScreenCommon.screenWidth,
         height: height,
         child: Center(
-          child: TitleTextApp(text: text),
+          child: TextCommon.title(text: text),
         ),
       ),
     );

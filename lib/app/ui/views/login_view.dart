@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_portugues/app/ui/widgets/common/assets/app/app_image_common.dart';
 import 'package:quiz_portugues/app/ui/widgets/common/assets/asset_image_common.dart';
-import 'package:quiz_portugues/app/ui/widgets/common/text/input_text_app.dart';
+import 'package:quiz_portugues/app/ui/widgets/common/text/text_input_common.dart';
 import '../../core/services/auth_service.dart';
 import '../widgets/common/assets/app/app_icon_common.dart';
 import '../widgets/common/button/button_common.dart';
-import '../widgets/common/color/color_app.dart';
-import '../widgets/common/text/subtitle_text_app.dart';
-import '../widgets/common/text/title_text_app.dart';
+import '../widgets/common/color/color_common.dart';
+import '../widgets/common/text/text_common.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -35,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
       Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
-          color: ColorApp.white,
+          color: ColorCommon.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
@@ -44,17 +43,17 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TitleTextApp(
+            TextCommon.title(
               text: action == 'login' ? 'Entrar' : 'Criar Conta',
             ),
             const SizedBox(height: 20),
-            InputTextApp(
+            TextInputCommon(
               controller: emailController,
               label: 'Usuário',
               iconLeft: AppIconCommon.accountCircle,
               onChanged: (value) {},
             ),
-            InputTextApp(
+            TextInputCommon(
               controller: passwordController,
               label: 'Senha',
               iconLeft: AppIconCommon.logout,
@@ -64,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
             if (action == 'login')
               ButtonCommon().text(
                 label: 'Entrar',
-                buttonColor: ColorApp.black,
+                buttonColor: ColorCommon.black,
                 onTap: () async {
                   String email = emailController.text.trim();
                   String emailFake = '@test.com';
@@ -77,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                 },
               )
             else ...[
-              InputTextApp(
+              TextInputCommon(
                 controller: confirmPasswordController,
                 label: 'Confirmar Senha',
                 iconLeft: AppIconCommon.logout,
@@ -85,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               ButtonCommon().text(
                 label: 'Criar Conta',
-                buttonColor: ColorApp.black,
+                buttonColor: ColorCommon.black,
                 onTap: () async {
                   String email = emailController.text.trim();
                   String emailFake = '@test.com';
@@ -95,8 +94,8 @@ class _LoginViewState extends State<LoginView> {
                     Get.snackbar(
                       'Erro',
                       'As senhas não conferem',
-                      backgroundColor: ColorApp.red,
-                      colorText: ColorApp.white,
+                      backgroundColor: ColorCommon.red,
+                      colorText: ColorCommon.white,
                     );
                     return;
                   }
@@ -119,7 +118,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.white,
+      backgroundColor: ColorCommon.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -137,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 decoration: const BoxDecoration(
-                  color: ColorApp.white,
+                  color: ColorCommon.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -147,24 +146,24 @@ class _LoginViewState extends State<LoginView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const TitleTextApp(text: 'Bem Vindo ao @Português'),
+                      TextCommon.title(text: 'Bem Vindo ao @Português'),
                       const Divider(),
                       const SizedBox(height: 24),
-                      const SubTitleTextApp(text: 'Faça login para continuar'),
+                      TextCommon.subtitle(text: 'Faça login para continuar'),
                       const SizedBox(height: 28),
                       ButtonCommon().text(
                         label: 'Entrar',
-                        buttonColor: ColorApp.black,
+                        buttonColor: ColorCommon.black,
                         onTap: () => showBottomSheet('login'),
                       ),
                       const SizedBox(height: 8),
-                      const SubTitleTextApp(text: 'Ou'),
+                      TextCommon.subtitle(text: 'Ou'),
                       const SizedBox(height: 8),
                       ButtonCommon().text(
                         label: 'Criar Conta',
-                        labelColor: ColorApp.black,
-                        buttonColor: ColorApp.transparent,
-                        borderColor: ColorApp.black,
+                        labelColor: ColorCommon.black,
+                        buttonColor: ColorCommon.transparent,
+                        borderColor: ColorCommon.black,
                         onTap: () => showBottomSheet('create'),
                       ),
                     ],

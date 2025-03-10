@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../preference/user_preference.dart';
+import '../utils/util_preference_common.dart';
 
 class AssetIconCommon extends StatelessWidget {
   final String icon;
@@ -17,7 +17,7 @@ class AssetIconCommon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userPrefsController = UserPreference();
+    final userPrefsController = UtilPreferenceCommon();
 
     final fontSizeMap = {
       FontSizeOption.small: 24.0,

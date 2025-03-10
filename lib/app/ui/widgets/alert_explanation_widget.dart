@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'common/button/button_common.dart';
-import 'common/color/color_app.dart';
-import 'common/text/subtitle_text_app.dart';
-import 'common/text/title_text_app.dart';
+import 'common/color/color_common.dart';
+import 'common/text/text_common.dart';
 
 class AlertExplanationWidget extends StatelessWidget {
   final int? answerNumber;
@@ -34,7 +33,7 @@ class AlertExplanationWidget extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: borderRadius,
-            color: ColorApp.white,
+            color: ColorCommon.white,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,17 +45,17 @@ class AlertExplanationWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TitleTextApp(text: title),
+                child: TextCommon.title(text: title),
               ),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: ColorApp.blue,
+                  color: ColorCommon.blue,
                 ),
-                child: SubTitleTextApp(
+                child: TextCommon.description(
                   text: explanationText,
-                  color: ColorApp.white,
+                  color: ColorCommon.white,
                 ),
               ),
               const SizedBox(height: 30),
@@ -66,7 +65,7 @@ class AlertExplanationWidget extends StatelessWidget {
                   onTap();
                 },
                 label: buttonText,
-                buttonColor: ColorApp.black,
+                buttonColor: ColorCommon.black,
               ),
             ],
           ),

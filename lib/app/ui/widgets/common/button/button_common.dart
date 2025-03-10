@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../assets/asset_icon_common.dart';
-import '../color/color_app.dart';
-import '../device/device_type_app.dart';
-import '../preference/user_preference.dart';
+import '../color/color_common.dart';
+import '../utils/util_screen_common.dart';
+import '../utils/util_preference_common.dart';
 
 class ButtonCommon {
   // BOTAO COM ICONE
   Widget icon({
     required String icon,
     required VoidCallback onTap,
-    Color color = ColorApp.black,
+    Color color = ColorCommon.black,
     double? iconH,
     double borderRadius = 16,
     double margin = 0,
-    Color background = ColorApp.transparent,
+    Color background = ColorCommon.transparent,
     Color? borderColor,
   }) {
     return GestureDetector(
@@ -45,21 +45,21 @@ class ButtonCommon {
   Widget text({
     required String label,
     required VoidCallback onTap,
-    Color buttonColor = ColorApp.black,
-    Color labelColor = ColorApp.white,
+    Color buttonColor = ColorCommon.black,
+    Color labelColor = ColorCommon.white,
     double borderRadius = 20,
     double padding = 12,
     bool oneLine = true,
     bool fullWidth = true,
     Color? borderColor,
   }) {
-    final userPrefsController = UserPreference();
+    final userPrefsController = UtilPreferenceCommon();
 
     return GestureDetector(
       onTap: onTap,
       child: IntrinsicWidth(
         child: Container(
-          width: fullWidth ? DeviceTypeApp.screenWidth : null,
+          width: fullWidth ? UtilScreenCommon.screenWidth : null,
           padding: EdgeInsets.symmetric(vertical: padding),
           decoration: BoxDecoration(
             color: buttonColor,
@@ -95,22 +95,22 @@ class ButtonCommon {
     required String label,
     required VoidCallback onTap,
     required String icon,
-    Color buttonColor = ColorApp.black,
-    Color labelColor = ColorApp.white,
-    Color iconColor = ColorApp.white,
+    Color buttonColor = ColorCommon.black,
+    Color labelColor = ColorCommon.white,
+    Color iconColor = ColorCommon.white,
     double? iconHeight,
     double borderRadius = 20,
     bool oneLine = true,
     bool fullWidth = true,
     Color? borderColor,
   }) {
-    final userPrefsController = UserPreference();
+    final userPrefsController = UtilPreferenceCommon();
 
     return GestureDetector(
       onTap: onTap,
       child: IntrinsicWidth(
         child: Container(
-          width: fullWidth ? DeviceTypeApp.screenWidth : null,
+          width: fullWidth ? UtilScreenCommon.screenWidth : null,
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: buttonColor,

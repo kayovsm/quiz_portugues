@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ColorApp {
-  ColorApp._privateConstructor();
+class ColorCommon {
+  ColorCommon._privateConstructor();
 
-  static final ColorApp _instance = ColorApp._privateConstructor();
+  static final ColorCommon _instance = ColorCommon._privateConstructor();
 
-  factory ColorApp() {
+  factory ColorCommon() {
     return _instance;
   }
 
@@ -33,7 +33,7 @@ class ColorApp {
   static const finished = Color(0xFF005DB2);
   static const peding = Color(0xFFE9523F);
   static const lock = Color(0xFF616161);
-
+ 
   // LIGHT MODE
   static const greyLightMode = Color(0xFFB6B4B4);
   // static const backgroundLightMode = Color.fromRGBO(226, 236, 236, 1);
@@ -84,39 +84,39 @@ class ColorApp {
 class ThemeApp {
   static ThemeData get lightTheme {
     return _buildThemeData(
-      primaryColor: ColorApp.buttonPrimaryLightMode,
-      backgroundColor: ColorApp.backgroundLightMode,
-      textTitleColor: ColorApp.textTitleLightMode,
-      textSubtitleColor: ColorApp.textSubtitleLightMode,
-      appBarColor: ColorApp.appBarLightMode,
-      iconColor: ColorApp.iconLightMode,
-      dialogBackgroundColor: ColorApp.dialogBackgroundColorLightMode,
-      cardColor: ColorApp.cardLightMode,
-      borderCardColor: ColorApp.borderCardLightMode,
-      chipColor: ColorApp.chipLightMode,
-      floatingButtonColor: ColorApp.floatingButtonLightMode,
-      buttonPrimaryColor: ColorApp.buttonPrimaryLightMode,
-      buttonSecondaryColor: ColorApp.buttonSecondaryLightMode,
-      focusButtonColor: ColorApp.focusButtonLightMode,
+      primaryColor: ColorCommon.buttonPrimaryLightMode,
+      backgroundColor: ColorCommon.backgroundLightMode,
+      textTitleColor: ColorCommon.textTitleLightMode,
+      textSubtitleColor: ColorCommon.textSubtitleLightMode,
+      appBarColor: ColorCommon.appBarLightMode,
+      iconColor: ColorCommon.iconLightMode,
+      dialogBackgroundColor: ColorCommon.dialogBackgroundColorLightMode,
+      cardColor: ColorCommon.cardLightMode,
+      borderCardColor: ColorCommon.borderCardLightMode,
+      chipColor: ColorCommon.chipLightMode,
+      floatingButtonColor: ColorCommon.floatingButtonLightMode,
+      buttonPrimaryColor: ColorCommon.buttonPrimaryLightMode,
+      buttonSecondaryColor: ColorCommon.buttonSecondaryLightMode,
+      focusButtonColor: ColorCommon.focusButtonLightMode,
     );
   }
 
   static ThemeData get darkTheme {
     return _buildThemeData(
-      primaryColor: ColorApp.buttonPrimaryDarkMode,
-      backgroundColor: ColorApp.backgroundDarkMode,
-      textTitleColor: ColorApp.textTitleDarkMode,
-      textSubtitleColor: ColorApp.textSubtitleDarkMode,
-      appBarColor: ColorApp.appBarDarkMode,
-      iconColor: ColorApp.iconDarkMode,
-      dialogBackgroundColor: ColorApp.dialogBackgroundColorDarkMode,
-      cardColor: ColorApp.cardDarkMode,
-      borderCardColor: ColorApp.borderCardDarkMode,
-      chipColor: ColorApp.chipDarkMode,
-      floatingButtonColor: ColorApp.floatingButtonDarkMode,
-      buttonPrimaryColor: ColorApp.buttonPrimaryDarkMode,
-      buttonSecondaryColor: ColorApp.buttonSecondaryDarkMode,
-      focusButtonColor: ColorApp.focusButtonDarkMode,
+      primaryColor: ColorCommon.buttonPrimaryDarkMode,
+      backgroundColor: ColorCommon.backgroundDarkMode,
+      textTitleColor: ColorCommon.textTitleDarkMode,
+      textSubtitleColor: ColorCommon.textSubtitleDarkMode,
+      appBarColor: ColorCommon.appBarDarkMode,
+      iconColor: ColorCommon.iconDarkMode,
+      dialogBackgroundColor: ColorCommon.dialogBackgroundColorDarkMode,
+      cardColor: ColorCommon.cardDarkMode,
+      borderCardColor: ColorCommon.borderCardDarkMode,
+      chipColor: ColorCommon.chipDarkMode,
+      floatingButtonColor: ColorCommon.floatingButtonDarkMode,
+      buttonPrimaryColor: ColorCommon.buttonPrimaryDarkMode,
+      buttonSecondaryColor: ColorCommon.buttonSecondaryDarkMode,
+      focusButtonColor: ColorCommon.focusButtonDarkMode,
     );
   }
 
@@ -163,7 +163,7 @@ class ThemeApp {
           side: BorderSide(color: chipColor, width: 1),
           borderRadius: BorderRadius.circular(16),
         ),
-        secondaryLabelStyle: const TextStyle(color: ColorApp.white),
+        secondaryLabelStyle: const TextStyle(color: ColorCommon.white),
         brightness: Brightness.light,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -173,9 +173,9 @@ class ThemeApp {
         colorScheme: ColorScheme.light(
           primary: buttonPrimaryColor,
           secondary: buttonSecondaryColor,
-          tertiary: ColorApp.transparent,
-          onPrimary: ColorApp.white,
-          onTertiary: ColorApp.black,
+          tertiary: ColorCommon.transparent,
+          onPrimary: ColorCommon.white,
+          onTertiary: ColorCommon.black,
         ),
       ),
       focusColor: focusButtonColor,

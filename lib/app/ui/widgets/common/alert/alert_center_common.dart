@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../button/button_common.dart';
-import '../color/color_app.dart';
-import '../device/device_type_app.dart';
-import '../text/description_text_app.dart';
-import '../text/title_text_app.dart';
+import '../color/color_common.dart';
+import '../text/text_common.dart';
+import '../utils/util_screen_common.dart';
 
 class AlertCenterCommon {
   Future<List<dynamic>?> select({
@@ -18,16 +16,16 @@ class AlertCenterCommon {
   }) {
     List<String> selectedOptions = [];
 
-    double screenWidth = DeviceTypeApp.screenWidth;
-    double screenHeight = DeviceTypeApp.screenHeight;
-    double dialogWidth = DeviceTypeApp.getDialogWidth();
+    double screenWidth = UtilScreenCommon.screenWidth;
+    double screenHeight = UtilScreenCommon.screenHeight;
+    double dialogWidth = UtilScreenCommon.getDialogWidth();
 
     return showDialog<List<dynamic>>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: TitleTextApp(text: title)),
+          title: Center(child: TextCommon.title(text: title)),
           backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
           content: ConstrainedBox(
             constraints: BoxConstraints(maxHeight: screenHeight * 0.8),
@@ -35,7 +33,7 @@ class AlertCenterCommon {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                DescriptionTextApp(text: description),
+                TextCommon.description(text: description),
                 Flexible(
                   child: SingleChildScrollView(
                     child: StatefulBuilder(
@@ -140,23 +138,23 @@ class AlertCenterCommon {
     Color? leftButtonColor,
     Color? rightButtonColor,
   }) {
-    double screenWidth = DeviceTypeApp.screenWidth;
-    double screenHeight = DeviceTypeApp.screenHeight;
-    double dialogWidth = DeviceTypeApp.getDialogWidth();
+    double screenWidth = UtilScreenCommon.screenWidth;
+    double screenHeight = UtilScreenCommon.screenHeight;
+    double dialogWidth = UtilScreenCommon.getDialogWidth();
 
     return showDialog<List<dynamic>>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: TitleTextApp(text: title)),
+          title: Center(child: TextCommon.title(text: title)),
           backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
           content: ConstrainedBox(
             constraints: BoxConstraints(maxHeight: screenHeight * 0.8),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                DescriptionTextApp(text: description),
+                TextCommon.description(text: description),
               ],
             ),
           ),
@@ -225,10 +223,10 @@ class AlertCenterCommon {
               : Colors.transparent,
         ),
         child: Center(
-          child: DescriptionTextApp(
+          child: TextCommon.description(
             text: label,
             color: isSelected
-                ? ColorApp.white
+                ? ColorCommon.white
                 : Theme.of(context).textTheme.bodyLarge!.color,
           ),
         ),

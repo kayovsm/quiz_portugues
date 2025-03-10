@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quiz_portugues/app/ui/widgets/common/alert/alert_top_common.dart';
-
 import '../../data/database/user_db.dart';
 import '../../routes/routes.dart';
+import '../../ui/widgets/common/alert/alert_top_common.dart';
 
 class AuthService extends GetxController {
   Rx<User?> _user = Rx<User?>(FirebaseAuth.instance.currentUser);
@@ -73,7 +73,6 @@ class AuthService extends GetxController {
         Get.offAllNamed(Routes.homeView);
       }
     } catch (e) {
-      // NotificationTop().createError();
       AlertTopCommon().error(
         context: Get.context!,
         title: 'Erro',
@@ -93,7 +92,7 @@ class AuthService extends GetxController {
       );
       return true;
     } catch (e) {
-      print('ERROR SAVE USER DB $e');
+      debugPrint('ERROR SAVE USER DB $e');
       return false;
     }
   }

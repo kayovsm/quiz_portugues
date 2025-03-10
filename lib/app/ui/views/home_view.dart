@@ -8,8 +8,8 @@ import '../../routes/routes.dart';
 import '../widgets/common/assets/app/app_icon_common.dart';
 import '../widgets/common/assets/asset_image_common.dart';
 import '../widgets/common/button/button_common.dart';
-import '../widgets/common/color/color_app.dart';
-import '../widgets/common/text/title_text_app.dart';
+import '../widgets/common/color/color_common.dart';
+import '../widgets/common/text/text_common.dart';
 import '../widgets/timer_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,12 +20,17 @@ class HomeView extends StatelessWidget {
     final AuthService authController = Get.put(AuthService());
 
     return Scaffold(
-      backgroundColor: ColorApp.white,
+      backgroundColor: ColorCommon.white,
       appBar: AppBar(
+        title: TextCommon.title(
+          text: '@Português',
+          color: ColorCommon.black,
+        ),
+        centerTitle: true,
         actions: [
           ButtonCommon().icon(
             icon: AppIconCommon.logout,
-            color: ColorApp.red,
+            color: ColorCommon.red,
             onTap: () => authController.signOut(),
           )
         ],
@@ -72,7 +77,7 @@ class HomeView extends StatelessWidget {
                   Routes.questionsView,
                   arguments: {
                     'questionCounter': '15',
-                    'timerWidget': TimerTournamentWidget(),
+                    'timerWidget': const TimerTournamentWidget(),
                     'controller': controller,
                   },
                 );
@@ -110,7 +115,7 @@ class HomeView extends StatelessWidget {
                 imageH: 45,
               ),
               const SizedBox(width: 20),
-              TitleTextApp(text: title),
+              TextCommon.title(text: title),
             ],
           ),
         ),

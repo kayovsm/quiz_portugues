@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'app/routes/routes.dart';
-import 'app/ui/widgets/common/device/device_type_app.dart';
-import 'firebase_options.dart';
+import 'app/ui/widgets/common/utils/util_screen_common.dart';
+import 'firebase/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
-        DeviceTypeApp.init(context);
+        UtilScreenCommon.init(context);
         return child!;
       },
       initialRoute: Routes.loginView,

@@ -6,7 +6,7 @@ class AlertAnimationCommon extends StatefulWidget {
   const AlertAnimationCommon({super.key, required this.image});
 
   @override
-  _AlertAnimationCommonState createState() => _AlertAnimationCommonState();
+  State<AlertAnimationCommon> createState() => _AlertAnimationCommonState();
 }
 
 class _AlertAnimationCommonState extends State<AlertAnimationCommon> {
@@ -15,7 +15,7 @@ class _AlertAnimationCommonState extends State<AlertAnimationCommon> {
   @override
   void initState() {
     super.initState();
-    _delayFuture = Future.delayed(Duration(seconds: 2));
+    _delayFuture = Future.delayed(const Duration(seconds: 2));
   }
 
   @override
@@ -25,11 +25,9 @@ class _AlertAnimationCommonState extends State<AlertAnimationCommon> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return AlertDialog(
-            content: Container(
-              child: Image.asset(
-                'assets/gifs/${widget.image}',
-                height: 100,
-              ),
+            content: Image.asset(
+              'assets/gifs/${widget.image}',
+              height: 100,
             ),
           );
         } else {
