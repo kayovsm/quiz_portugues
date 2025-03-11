@@ -106,8 +106,6 @@ class AlertCenterCommon {
           context: context,
           title: title,
           description: description,
-          content:
-              TextCommon.description(text: description), // exibe a descricao
           actions: [
             _buildButton(
               context: context,
@@ -138,7 +136,7 @@ class AlertCenterCommon {
     required BuildContext context,
     required String title, // titulo do alerta
     required String description, // descricao do alerta
-    required Widget content, // conteudo do dialogo
+    Widget? content, // conteudo do dialogo
     required List<Widget> actions, // acoes do dialogo
     required double screenWidth, // largura da tela
     required double screenHeight, // altura da tela
@@ -159,7 +157,7 @@ class AlertCenterCommon {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextCommon.description(text: description), // exibe a descricao
-            Flexible(child: content), // exibe o conteudo
+            if (content != null) Flexible(child: content), // exibe o conteudo
           ],
         ),
       ),

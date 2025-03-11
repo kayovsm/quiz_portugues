@@ -49,19 +49,16 @@ class ChallengeView extends StatelessWidget {
                       width: constraints.maxWidth,
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(14),
-                            child: Obx(() {
-                              final question = controller
-                                  .selectedQuestions[
-                                      controller.currentQuestionIndex.value]
-                                  .question;
-                              return QuestionWidget(
-                                height: constraints.maxHeight * 0.24,
-                                text: question,
-                              );
-                            }),
-                          ),
+                          Obx(() {
+                            final question = controller
+                                .selectedQuestions[
+                                    controller.currentQuestionIndex.value]
+                                .question;
+                            return QuestionWidget(
+                              height: constraints.maxHeight * 0.24,
+                              text: question,
+                            );
+                          }),
                           AnswerSection(
                             screenH: screenH,
                             controller: controller,
