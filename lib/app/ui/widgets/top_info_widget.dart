@@ -8,14 +8,14 @@ import 'common/button/button_common.dart';
 import 'common/color/color_common.dart';
 import 'common/text/text_common.dart';
 
-class TopInfoSection extends StatelessWidget {
+class TopInfoWidget extends StatelessWidget {
   final double screenW;
   final dynamic controller;
   final Widget timerWidget;
   final String questionCounter;
   final String type;
 
-  const TopInfoSection({
+  const TopInfoWidget({
     super.key,
     required this.screenW,
     required this.controller,

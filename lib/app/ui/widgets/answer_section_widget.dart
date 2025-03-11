@@ -6,12 +6,12 @@ import 'common/assets/app/app_icon_common.dart';
 import 'common/button/button_common.dart';
 import 'common/color/color_common.dart';
 
-class AnswerSection extends StatelessWidget {
+class AnswerSectionWidget extends StatelessWidget {
   final double screenH;
   final dynamic controller;
   final String type;
 
-  const AnswerSection({
+  const AnswerSectionWidget({
     super.key,
     required this.screenH,
     required this.controller,

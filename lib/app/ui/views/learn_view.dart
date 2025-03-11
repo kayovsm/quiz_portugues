@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/learn_controller.dart';
-import '../widgets/answer_section.dart';
+import '../widgets/answer_section_widget.dart';
 import '../widgets/common/color/color_common.dart';
 import '../widgets/common/utils/util_screen_common.dart';
 import '../widgets/question_widget.dart';
-import '../widgets/top_info_section.dart';
+import '../widgets/top_info_widget.dart';
 
 class LearnView extends StatelessWidget {
   final String questionCounter;
@@ -30,7 +30,7 @@ class LearnView extends StatelessWidget {
           color: ColorCommon.white,
           child: Column(
             children: <Widget>[
-              TopInfoSection(
+              TopInfoWidget(
                 screenW: screenW,
                 controller: controller,
                 timerWidget: timerWidget,
@@ -59,7 +59,7 @@ class LearnView extends StatelessWidget {
                               text: question,
                             );
                           }),
-                          AnswerSection(
+                          AnswerSectionWidget(
                             screenH: screenH,
                             controller: controller,
                             type: 'learn',
