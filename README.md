@@ -20,8 +20,8 @@ Este projeto é um aplicativo de quiz educacional desenvolvido com Flutter. O ob
 
 ## Requisitos
 
-- **flutter**: versão 2.5.0 ou superior.
-- **dart**: versão 2.14.0 ou superior.
+- **flutter**: versão 3.22.0 ou superior.
+- **dart**: versão 3.4.0 ou superior.
 
 ## Instalação
 
