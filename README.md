@@ -61,4 +61,13 @@ O projeto segue a arquitetura MVVM (model-view-controller), onde:
 ![image](https://github.com/user-attachments/assets/c547774c-c554-4e2c-a8ad-5f84205728c7)
 
 ## Imagens
+![image](https://github.com/user-attachments/assets/d7b8b886-abfc-40be-935b-be45c43a68d7)
 ![image](https://github.com/user-attachments/assets/3c671f28-dc0e-42fc-8a9d-86b5e838a795)
+![image](https://github.com/user-attachments/assets/1bd1a1b2-93b0-4e4e-9ad8-fd8acbf02a90)
+![image](https://github.com/user-attachments/assets/da8c5899-2935-4714-99c6-a0ed757ea737)
+![image](https://github.com/user-attachments/assets/9f7c5656-50f5-4c4c-b228-a482ea7e5c91)
+![image](https://github.com/user-attachments/assets/addcb57b-aa6b-472c-adc4-669059b14b13)
+![image](https://github.com/user-attachments/assets/47aca6f8-2d8e-4358-9b3b-a598bab3f34b)
+
+
+
