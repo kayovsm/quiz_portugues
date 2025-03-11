@@ -18,34 +18,10 @@ Este projeto é um aplicativo de quiz educacional desenvolvido com Flutter. O ob
 - **sqlite**: para armazenamento offline dos dados do usuario
 - **getx**: para gerenciamento de estado e navegação.
 
-## Requisitos
+## Versões
 
 - **flutter**: versão 3.22.0 ou superior.
 - **dart**: versão 3.4.0 ou superior.
-
-## Instalação
-
-1. clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   ```
-2. navegue até o diretório do projeto:
-   ```bash
-   cd nome-do-repositorio
-   ```
-3. instale as dependências:
-   ```bash
-   flutter pub get
-   ```
-
-## Uso
-
-1. inicie o emulador ou conecte um dispositivo físico.
-2. execute o aplicativo:
-   ```bash
-   flutter run
-   ```
-3. siga as instruções na tela para usar o aplicativo.
 
 ## Estrutura de Pastas
 ![image](https://github.com/user-attachments/assets/c547774c-c554-4e2c-a8ad-5f84205728c7)
