@@ -1,8 +1,4 @@
-entendi, vou elaborar um README mais detalhado para o seu projeto, incluindo informações sobre o banco de dados usado, a versão do flutter, e a arquitetura utilizada:
-
----
-
-# Quiz Educacional
+# @Português
 
 ## Visão Geral
 
@@ -21,12 +17,6 @@ Este projeto é um aplicativo de quiz educacional desenvolvido com Flutter. O ob
 - **cloud firestore**: para armazenamento e sincronização de dados em tempo real.
 - **sqlite**: para armazenamento offline dos dados do usuario
 - **getx**: para gerenciamento de estado e navegação.
-
-## Arquitetura
-
-O projeto segue a arquitetura MVVM (model-view-controller), onde:
-
-
 
 ## Requisitos
 
