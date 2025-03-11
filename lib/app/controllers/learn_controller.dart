@@ -22,7 +22,7 @@ class LearnController extends GetxController with GetTickerProviderStateMixin {
       animationController; // controlador de animação para o timer
   var selectedQuestions =
       <QuestionModel>[].obs; // lista de perguntas selecionadas
-  late Stopwatch stopwatch; // plugin do cronometro
+  // late Stopwatch stopwatch; // plugin do cronometro
 
   @override
   void onInit() async {
@@ -31,7 +31,7 @@ class LearnController extends GetxController with GetTickerProviderStateMixin {
     loadQuestions();
 
     // inicializa o Stopwatch
-    stopwatch = Stopwatch();
+    // stopwatch = Stopwatch();
   }
 
   /// INICIALIZA O CONTROLADOR DE ANIMAÇÃO E CONFIGURA O LISTENER PARA O TIMER.
@@ -52,21 +52,6 @@ class LearnController extends GetxController with GetTickerProviderStateMixin {
       questionsFuture = dbHelper.getQuestions();
     });
 
-    // // seleciona perguntas para a rodada
-    // quizDados.shuffle();
-    // selectedQuestions.value =
-    //     quizDados.take(13).toList(); // seleciona 13 perguntas do banco de dados
-
-    // for (var question in selectedQuestions) {
-    //   int correctAnswerIndex = question.correctAnswerIndex;
-    //   List<String> options = question.options.cast<String>();
-    //   String correctAnswer = options[correctAnswerIndex - 1];
-    //   options.shuffle(); // embaralha as opções
-    //   int newCorrectAnswerIndex = options.indexOf(correctAnswer) + 1;
-    //   question.correctAnswerIndex = newCorrectAnswerIndex;
-    //   question.options = options;
-    // }
-
     // Carrega perguntas do arquivo JSON
     loadQuestionsFromJson().then((questions) {
       selectedQuestions.value = questions.take(13).toList();
@@ -80,10 +65,6 @@ class LearnController extends GetxController with GetTickerProviderStateMixin {
         question.correctAnswerIndex = newCorrectAnswerIndex;
         question.options = options;
       }
-
-      // Timer.periodic(const Duration(seconds: 1), (timer) {
-      //   elapsedTime.value = stopwatch.elapsed;
-      // });
     });
   }
 
@@ -194,62 +175,29 @@ class LearnController extends GetxController with GetTickerProviderStateMixin {
     }
   }
 
-  /// EXIBE A EXPLICAÇÃO DA RESPOSTA SELECIONADA.
-  void showExplanation(int answerIndex) async {
-    if (animationController.isAnimating || animationController.isCompleted) {
-      animationController.stop();
-    }
-    bool isCorrectAnswer =
+  bool isCorrectAnswer(int answerIndex) {
+    bool isCorrect =
         selectedQuestions[currentQuestionIndex.value].correctAnswerIndex ==
             answerIndex;
-    Get.bottomSheet(
-      SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(Get.context!).viewInsets.bottom,
-          ),
-          child: AlertExplanationWidget(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-            title: isCorrectAnswer
-                ? "Parabéns, você acertou!"
-                : "Ops, você errou!",
-            explanationText:
-                'Resposta Correta: ${selectedQuestions[currentQuestionIndex.value].correctAnswerText}.\n\nExplicação: ${selectedQuestions[currentQuestionIndex.value].explanation}',
-            answerNumber: answerIndex,
-            image: isCorrectAnswer ? 'target1' : 'target2',
-            buttonText: "Ok",
-            onTap: () {
-              if (selectedQuestions[currentQuestionIndex.value]
-                      .correctAnswerIndex ==
-                  answerIndex) {
-                correctAnswers++;
-              } else {
-                errors++;
-              }
-              if (errors.value + correctAnswers.value == 10) {
-                Get.offNamed(
-                  Routes.resultRoundView,
-                  arguments: {
-                    'correctAnswers': correctAnswers.value,
-                    'type': 'learn',
-                  },
-                );
-                Get.delete<LearnController>();
-              } else {
-                nextQuestion();
-                currentQuestionIndex++;
-                animationController.reset(); // reseta o timer
-                animationController.forward(); // inicia o timer
-              }
-            },
-          ),
-        ),
-      ),
-      isScrollControlled: true,
-      isDismissible: false,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-    );
+
+    if (isCorrect) {
+      correctAnswers++;
+    } else {
+      errors++;
+    }
+
+    return isCorrect;
+  }
+
+  bool isFinished(int answerIndex) {
+    isCorrectAnswer(answerIndex);
+
+    if (errors.value + correctAnswers.value == 10) {
+      return true;
+    } else {
+      nextQuestion();
+      currentQuestionIndex++;
+      return false;
+    }
   }
 }

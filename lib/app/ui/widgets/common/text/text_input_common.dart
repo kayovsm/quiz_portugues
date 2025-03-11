@@ -7,19 +7,20 @@ import '../color/color_common.dart';
 import '../utils/util_screen_common.dart';
 import 'text_common.dart';
 
+/// widget de campo de entrada de texto comum
 class TextInputCommon extends StatelessWidget {
-  final String label;
-  final double? width;
-  final TextEditingController controller;
-  final ValueChanged<String>? onChanged;
-  final TextInputType? keyboardType;
-  final int? maxChar;
-  final FocusNode? focusNode;
-  final bool isRequired;
-  final String? iconLeft;
-  final Widget? iconRight;
-  final TextInputFormatter? inputFormatter;
-  final bool isPassword;
+  final String label; // rótulo do campo de texto
+  final double? width; // largura do campo de texto
+  final TextEditingController controller; // controlador do texto
+  final ValueChanged<String>? onChanged; // função chamada quando o texto muda
+  final TextInputType? keyboardType; // tipo de teclado
+  final int? maxChar; // número máximo de caracteres
+  final FocusNode? focusNode; // nó de foco
+  final bool isRequired; // indica se o campo é obrigatório
+  final String? iconLeft; // ícone à esquerda
+  final Widget? iconRight; // ícone à direita
+  final TextInputFormatter? inputFormatter; // formatador de entrada
+  final bool isPassword; // indica se o campo é uma senha
 
   const TextInputCommon({
     super.key,
@@ -43,6 +44,7 @@ class TextInputCommon extends StatelessWidget {
     Device deviceType = UtilScreenCommon.getDeviceType();
     double maxW;
 
+    // define a largura máxima com base no tipo de dispositivo
     switch (deviceType) {
       case Device.mobile:
         maxW = screenWidth;
@@ -82,26 +84,28 @@ class TextInputCommon extends StatelessWidget {
                 ],
                 decoration: InputDecoration(
                   filled: true,
+                  // exibe ícone de aviso se o campo é obrigatório e está vazio
                   prefixIcon: required
                       ? Padding(
                           padding: const EdgeInsetsDirectional.all(12),
                           child: SvgPicture.asset(
                             AppIconCommon.warningAmber,
                             height: 22,
-                            // color: ColorCommon.red,
+                            // cor: ColorCommon.red,
                             colorFilter: const ColorFilter.mode(
                               ColorCommon.red,
                               BlendMode.srcIn,
                             ),
                           ),
                         )
+                      // exibe ícone à esquerda se fornecido
                       : iconLeft != null
                           ? Padding(
                               padding: const EdgeInsetsDirectional.all(12),
                               child: SvgPicture.asset(
                                 iconLeft!,
                                 height: 22,
-                                // color: ColorCommon.grey,
+                                // cor: ColorCommon.grey,
                                 colorFilter: const ColorFilter.mode(
                                   ColorCommon.grey,
                                   BlendMode.srcIn,
@@ -109,7 +113,7 @@ class TextInputCommon extends StatelessWidget {
                               ),
                             )
                           : null,
-                  suffixIcon: iconRight,
+                  suffixIcon: iconRight, // ícone à direita se fornecido
                   fillColor: ColorCommon.transparent,
                   label: TextCommon.description(
                     text: label,
@@ -151,9 +155,9 @@ class NoLeadingSpacesFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    String newText = newValue.text.trimLeft();
-    int offset =
-        newValue.selection.baseOffset - (newValue.text.length - newText.length);
+    String newText = newValue.text.trimLeft(); // remove espaços à esquerda
+    int offset = newValue.selection.baseOffset -
+        (newValue.text.length - newText.length); // ajusta a posição do cursor
     return newValue.copyWith(
       text: newText,
       selection: TextSelection.collapsed(offset: offset),

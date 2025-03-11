@@ -36,7 +36,6 @@ class ColorCommon {
  
   // LIGHT MODE
   static const greyLightMode = Color(0xFFB6B4B4);
-  // static const backgroundLightMode = Color.fromRGBO(226, 236, 236, 1);
   static const backgroundLightMode = Color(0xFFF2F2F2);
 
   static const whiteLightMode = Color(0xFFFEFEFE);

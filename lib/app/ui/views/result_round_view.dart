@@ -46,31 +46,30 @@ class ResultRoundView extends StatelessWidget {
               child: AlertExplanationWidget(
                 borderRadius: BorderRadius.circular(30),
                 title: 'Parabéns!',
-                explanationText:
-                    "Você acertou: $correctAnswers de 10 perguntas",
+                explanationText: _buildTotalQuetions(),
                 image: 'podium',
                 buttonText: "Reiniciar",
                 onTap: () {
-                  if (type == 'tournament') {
-                    final controller = Get.put(ChallengeController());
-                    Get.offAllNamed(
-                      Routes.questionsView,
-                      arguments: {
-                        'questionCounter': '15',
-                        'timerWidget': const TimerTournamentWidget(),
-                        'controller': controller,
-                      },
-                    );
-                  } else {
+                  if (type == 'learn') {
                     final controller = Get.put(LearnController());
                     Get.offAllNamed(
-                      Routes.questionsView,
+                      Routes.learnView,
                       arguments: {
                         'questionCounter': '10',
                         'timerWidget': TimerWidget(
                           animation: StepTween(begin: 31, end: 0)
                               .animate(controller.animationController),
                         ),
+                        'controller': controller,
+                      },
+                    );
+                  } else {
+                    final controller = Get.put(ChallengeController());
+                    Get.offAllNamed(
+                      Routes.challengeView,
+                      arguments: {
+                        'questionCounter': '15',
+                        'timerWidget': const TimerTournamentWidget(),
                         'controller': controller,
                       },
                     );
@@ -82,5 +81,13 @@ class ResultRoundView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _buildTotalQuetions() {
+    if (type == 'learn') {
+      return 'Você acertou: $correctAnswers de 10 perguntas';
+    } else {
+      return 'Você acertou: $correctAnswers de 15 perguntas';
+    }
   }
 }

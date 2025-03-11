@@ -55,7 +55,7 @@ Widget _buildTopInfoSection(String? icon, String buttonTxt, String? gif) {
             color: ColorCommon.black,
           ),
         const SizedBox(width: 5),
-        TextCommon.description(text: buttonTxt)
+        TextCommon.subtitle(text: buttonTxt)
       ],
     ),
   );

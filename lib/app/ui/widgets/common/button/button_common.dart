@@ -6,16 +6,17 @@ import '../utils/util_screen_common.dart';
 import '../utils/util_preference_common.dart';
 
 class ButtonCommon {
-  // BOTAO COM ICONE
+  // CRIA UM BOTAO COM ICONE
   Widget icon({
-    required String icon,
-    required VoidCallback onTap,
-    Color color = ColorCommon.black,
-    double? iconH,
-    double borderRadius = 16,
-    double margin = 0,
-    Color background = ColorCommon.transparent,
-    Color? borderColor,
+    required String icon, // caminho para o icone a ser exibido
+    required VoidCallback
+        onTap, // funcao a ser chamada quando o botao for pressionado
+    Color color = ColorCommon.black, // cor do icone
+    double? iconH, // altura do icone
+    double borderRadius = 16, // raio da borda do botao
+    double margin = 0, // margem ao redor do botao
+    Color background = ColorCommon.transparent, // cor de fundo do botao
+    Color? borderColor, // cor da borda do botao, se houver
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -41,17 +42,19 @@ class ButtonCommon {
     );
   }
 
-  // BOTAO COM TEXTO
+  // CRIA UM BOTAO COM TEXTO
   Widget text({
-    required String label,
-    required VoidCallback onTap,
-    Color buttonColor = ColorCommon.black,
-    Color labelColor = ColorCommon.white,
-    double borderRadius = 20,
-    double padding = 12,
-    bool oneLine = true,
-    bool fullWidth = true,
-    Color? borderColor,
+    required String label, // texto a ser exibido no botao
+    required VoidCallback
+        onTap, // funcao a ser chamada quando o botao for pressionado
+    Color buttonColor = ColorCommon.black, // cor do botao
+    Color labelColor = ColorCommon.white, // cor do texto do botao
+    double borderRadius = 20, // raio da borda do botao
+    double padding = 12, // preenchimento interno do botao
+    bool oneLine = true, // define se o texto deve ser exibido em uma linha
+    bool fullWidth =
+        true, // define se o botao deve ocupar toda a largura disponivel
+    Color? borderColor, // cor da borda do botao, se houver
   }) {
     final userPrefsController = UtilPreferenceCommon();
 
@@ -90,19 +93,21 @@ class ButtonCommon {
     );
   }
 
-  // BOTAO COM ICONE E TEXTO
+  // CRIA UM BOTAO COM ICONE E TEXTO
   Widget textIcon({
-    required String label,
-    required VoidCallback onTap,
-    required String icon,
-    Color buttonColor = ColorCommon.black,
-    Color labelColor = ColorCommon.white,
-    Color iconColor = ColorCommon.white,
-    double? iconHeight,
-    double borderRadius = 20,
-    bool oneLine = true,
-    bool fullWidth = true,
-    Color? borderColor,
+    required String label, // texto a ser exibido no botao
+    required VoidCallback
+        onTap, // funcao a ser chamada quando o botao for pressionado
+    required String icon, // caminho para o icone a ser exibido
+    Color buttonColor = ColorCommon.black, // cor do botao
+    Color labelColor = ColorCommon.white, // cor do texto do botao
+    Color iconColor = ColorCommon.white, // cor do icone
+    double? iconHeight, // altura do icone
+    double borderRadius = 20, // raio da borda do botao
+    bool oneLine = true, // define se o texto deve ser exibido em uma linha
+    bool fullWidth =
+        true, // define se o botao deve ocupar toda a largura disponivel
+    Color? borderColor, // cor da borda do botao, se houver
   }) {
     final userPrefsController = UtilPreferenceCommon();
 
@@ -153,13 +158,18 @@ class ButtonCommon {
     );
   }
 
+  // RETORNA O TAMANHO DA FONTE COM BASE NA OPCAO DE TAMANHO DA FONTE FORNECIDA
   double? _getFontSize(FontSizeOption option) {
     final fontSizeMap = {
-      FontSizeOption.small: 15.0,
-      FontSizeOption.medium: 16.0,
-      FontSizeOption.large: 17.0,
+      FontSizeOption.small:
+          15.0, // define o tamanho da fonte para a opcao "small"
+      FontSizeOption.medium:
+          16.0, // define o tamanho da fonte para a opcao "medium"
+      FontSizeOption.large:
+          17.0, // define o tamanho da fonte para a opcao "large"
     };
 
-    return fontSizeMap[option] ?? 16.0;
+    return fontSizeMap[option] ??
+        16.0; // retorna o tamanho da fonte correspondente a opcao fornecida ou 16.0 se a opcao nao for encontrada
   }
 }

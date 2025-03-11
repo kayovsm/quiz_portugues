@@ -1,69 +1,74 @@
 import 'package:flutter/material.dart';
-
 import '../assets/app/app_icon_common.dart';
 import '../assets/asset_icon_common.dart';
 import '../color/color_common.dart';
 import '../text/text_common.dart';
 
 class AlertTopCommon {
+  // exibe uma notificacao no topo da tela
   void showNotificationTop({
-    required BuildContext context,
-    required String? icon,
-    required String title,
-    required String description,
-    required Color backgroundColor,
-    required Color textColor,
+    required BuildContext context, // contexto da aplicacao
+    required String? icon, // icone da notificacao
+    required String title, // titulo da notificacao
+    required String description, // descricao da notificacao
+    required Color backgroundColor, // cor de fundo da notificacao
+    required Color textColor, // cor do texto da notificacao
   }) {
-    final overlay = Overlay.of(context);
-    late OverlayEntry overlayEntry;
+    final overlay = Overlay.of(context); // obtem o overlay da aplicacao
+    late OverlayEntry overlayEntry; // cria um overlay entry
     ValueNotifier<double> topPosition =
-        ValueNotifier<double>(-100); // Inicialmente invisível
+        ValueNotifier<double>(-100); // inicialmente invisível
 
     overlayEntry = OverlayEntry(
       builder: (context) {
         return Stack(
           children: [
             ValueListenableBuilder<double>(
-              valueListenable: topPosition,
+              valueListenable: topPosition, // escuta as mudanças na posição
               builder: (context, value, child) {
                 return AnimatedPositioned(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.easeOut,
-                  top: value,
-                  left: 20.0,
-                  right: 20.0,
+                  duration: const Duration(
+                      milliseconds: 1000), // define a duracao da animacao
+                  curve: Curves.easeOut, // define a curva da animacao
+                  top: value, // posicao vertical
+                  left: 20.0, // margem esquerda
+                  right: 20.0, // margem direita
                   child: Material(
-                    color: Colors.transparent,
+                    color: Colors
+                        .transparent, // define a cor transparente para o material
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 10,
-                      ),
+                          vertical: 12,
+                          horizontal:
+                              10), // define o preenchimento interno do container
                       decoration: BoxDecoration(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
+                        color:
+                            backgroundColor, // define a cor de fundo do container
+                        borderRadius: BorderRadius.circular(
+                            16), // define o raio das bordas do container
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
-                        // spacing: 5,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            // spacing: 10,
                             children: [
                               AssetIconCommon(
-                                icon: icon!,
+                                icon: icon!, // define o icone
                                 color: ColorCommon.white,
                               ),
                               TextCommon.subtitle(
-                                color: textColor,
-                                text: title,
+                                color:
+                                    textColor, // define a cor do texto do titulo
+                                text: title, // define o titulo da notificacao
                               ),
                             ],
                           ),
                           TextCommon.description(
-                            text: description,
-                            color: textColor,
+                            text:
+                                description, // define a descricao da notificacao
+                            color:
+                                textColor, // define a cor do texto da descricao
                           ),
                         ],
                       ),
@@ -77,57 +82,67 @@ class AlertTopCommon {
       },
     );
 
-    topPosition.value = -100;
-    overlay.insert(overlayEntry);
+    topPosition.value = -100; // inicialmente invisível
+    overlay.insert(overlayEntry); // insere o overlay entry
 
-    // Garante que a animação de entrada seja disparada após o primeiro frame
+    // garante que a animacao de entrada seja disparada apos o primeiro frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      topPosition.value = 20;
+      topPosition.value = 20; // posicao visível
     });
 
-    // Aguarda 3 segundos antes de iniciar a animação de saída
+    // aguarda 3 segundos antes de iniciar a animacao de saida
     Future.delayed(const Duration(seconds: 3), () {
-      topPosition.value = -100;
+      topPosition.value = -100; // posicao invisível
 
       Future.delayed(const Duration(milliseconds: 500), () {
-        overlayEntry.remove();
+        overlayEntry.remove(); // remove o overlay entry
       });
     });
   }
 
+  // exibe uma notificacao de sucesso
   void success({
-    required BuildContext context,
-    required String title,
-    required String message,
+    required BuildContext context, // contexto da aplicacao
+    required String title, // titulo da notificacao
+    required String message, // mensagem da notificacao
   }) {
-    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final isDarkTheme = Theme.of(context).brightness ==
+        Brightness.dark; // verifica se o tema é escuro
     showNotificationTop(
       context: context,
-      icon: AppIconCommon.checkCircle,
-      title: title,
-      description: message,
+      icon: AppIconCommon.checkCircle, // define o icone de sucesso
+      title: title, // define o titulo da notificacao
+      description: message, // define a mensagem da notificacao
       backgroundColor: isDarkTheme
           ? ColorCommon.alertSuccessLightMode
-          : ColorCommon.alertSuccessLightMode,
-      textColor: isDarkTheme ? ColorCommon.white : ColorCommon.white,
+          : ColorCommon
+              .alertSuccessLightMode, // define a cor de fundo da notificacao
+      textColor: isDarkTheme
+          ? ColorCommon.white
+          : ColorCommon.white, // define a cor do texto da notificacao
     );
   }
 
+  // exibe uma notificacao de erro
   void error({
-    required BuildContext context,
-    required String title,
-    required String message,
+    required BuildContext context, // contexto da aplicacao
+    required String title, // titulo da notificacao
+    required String message, // mensagem da notificacao
   }) {
-    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final isDarkTheme = Theme.of(context).brightness ==
+        Brightness.dark; // verifica se o tema é escuro
     showNotificationTop(
       context: context,
-      icon: AppIconCommon.info,
-      title: title,
-      description: message,
+      icon: AppIconCommon.info, // define o icone de erro
+      title: title, // define o titulo da notificacao
+      description: message, // define a mensagem da notificacao
       backgroundColor: isDarkTheme
           ? ColorCommon.alertErrorDarkMode
-          : ColorCommon.alertErrorLightMode,
-      textColor: isDarkTheme ? ColorCommon.white : ColorCommon.white,
+          : ColorCommon
+              .alertErrorLightMode, // define a cor de fundo da notificacao
+      textColor: isDarkTheme
+          ? ColorCommon.white
+          : ColorCommon.white, // define a cor do texto da notificacao
     );
   }
 }

@@ -3,12 +3,13 @@ import 'package:quiz_portugues/app/ui/widgets/common/utils/util_screen_common.da
 import '../utils/util_preference_common.dart';
 
 class TextCommon {
+  /// cria um widget de texto estilizado como título
   static Widget title({
-    required String text,
-    Color? color,
-    TextAlign textAlign = TextAlign.start,
-    double? fontSize,
-    bool oneLine = false,
+    required String text, // texto a ser exibido
+    Color? color, // cor do texto
+    TextAlign textAlign = TextAlign.start, // alinhamento do texto
+    double? fontSize, // tamanho da fonte
+    bool oneLine = false, // se deve exibir apenas uma linha
   }) {
     final userPrefsController = UtilPreferenceCommon();
     final BuildContext context = UtilScreenCommon.contextUtil;
@@ -16,7 +17,7 @@ class TextCommon {
     double finalFontSize;
 
     if (fontSize != null) {
-      finalFontSize = fontSize;
+      finalFontSize = fontSize; // usa o tamanho da fonte fornecido
     } else {
       switch (userPrefsController.fontSizeOption) {
         case FontSizeOption.small:
@@ -46,12 +47,13 @@ class TextCommon {
     );
   }
 
+  /// cria um widget de texto estilizado como subtítulo
   static Widget subtitle({
-    required String text,
-    Color? color,
-    TextAlign textAlign = TextAlign.start,
-    double? fontSize,
-    bool oneLine = false,
+    required String text, // texto a ser exibido
+    Color? color, // cor do texto
+    TextAlign textAlign = TextAlign.start, // alinhamento do texto
+    double? fontSize, // tamanho da fonte
+    bool oneLine = false, // se deve exibir apenas uma linha
   }) {
     final userPrefsController = UtilPreferenceCommon();
     final BuildContext context = UtilScreenCommon.contextUtil;
@@ -59,7 +61,7 @@ class TextCommon {
     double finalFontSize;
 
     if (fontSize != null) {
-      finalFontSize = fontSize;
+      finalFontSize = fontSize; // usa o tamanho da fonte fornecido
     } else {
       switch (userPrefsController.fontSizeOption) {
         case FontSizeOption.small:
@@ -90,12 +92,13 @@ class TextCommon {
     );
   }
 
+  /// cria um widget de texto estilizado como descrição
   static Widget description({
-    required String text,
-    Color? color,
-    TextAlign textAlign = TextAlign.start,
-    bool oneLine = false,
-    double? fontSize,
+    required String text, // texto a ser exibido
+    Color? color, // cor do texto
+    TextAlign textAlign = TextAlign.start, // alinhamento do texto
+    bool oneLine = false, // se deve exibir apenas uma linha
+    double? fontSize, // tamanho da fonte
   }) {
     final userPrefsController = UtilPreferenceCommon();
     final BuildContext context = UtilScreenCommon.contextUtil;
@@ -103,7 +106,7 @@ class TextCommon {
     double finalFontSize;
 
     if (fontSize != null) {
-      finalFontSize = fontSize;
+      finalFontSize = fontSize; // usa o tamanho da fonte fornecido
     } else {
       switch (userPrefsController.fontSizeOption) {
         case FontSizeOption.small:

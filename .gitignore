@@ -48,5 +48,5 @@ app.*.map.json
 .fvm/
 
 # Firebase configuration
-lib/firebase_options.dart
+lib/firebase/firebase_options.dart
 firebase.json

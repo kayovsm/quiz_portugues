@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
                 final controller = Get.put(LearnController());
 
                 Get.toNamed(
-                  Routes.questionsView,
+                  Routes.learnView,
                   arguments: {
                     'questionCounter': '10',
                     'timerWidget': TimerWidget(
@@ -74,7 +74,7 @@ class HomeView extends StatelessWidget {
               onTap: () {
                 final controller = Get.put(ChallengeController());
                 Get.toNamed(
-                  Routes.questionsView,
+                  Routes.challengeView,
                   arguments: {
                     'questionCounter': '15',
                     'timerWidget': const TimerTournamentWidget(),
